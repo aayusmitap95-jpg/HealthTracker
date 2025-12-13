@@ -85,3 +85,21 @@ def do_PUT(self):
         return update_medical_record(self, record_id)
 
     return send_404(self)    
+
+#DELETE
+def do_DELETE(self):
+    path = self.path
+    if path == "/api/auth/delete":
+        return delete_user(self)
+    if path == "/api/user/delete":
+        return delete_user_details(self)
+    if path.startswith("/api/activity/"):
+        record_id = int(path.split("/")[-1])
+        return delete_medical_record(self, record_id)
+    
+    return send_404(self)
+
+#LOGGER
+def log_message(self, format, *args):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] [Server] {format % args}")
