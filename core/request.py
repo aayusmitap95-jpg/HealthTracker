@@ -10,7 +10,7 @@ def parse_json_body(handler):
     """
     try:
         length = int(handler.headers.get("Content-Length", 0))
-        if length == 0;
+        if length == 0:
             return {}
         raw = handler.rfile.read(length)
         body = raw.decode("utf-8")
