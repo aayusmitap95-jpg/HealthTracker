@@ -11,7 +11,7 @@ from services.user_service import (
 def get_all_users(handler):
     return send_json(handler, 200, service_get_all_users())
 
-def get_user(handler, user_id)
+def get_user(handler, user_id):
     user = service_get_user(user_id)
     return send_json(handler, 200, user) if user else send_404(handler)
 def create_user(handler):

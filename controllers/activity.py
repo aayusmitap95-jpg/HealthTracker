@@ -23,5 +23,5 @@ def update_activity(handler, activity_id):
     return send_json(handler, 200, updated) if updated else send_404(handler)
 
 def delete_activity(handler, activity_id):
-    deleted = activity_delete(activit_id)
+    deleted = activity_delete(activity_id)
     return send_json(handler, 200, {"deleted": True}) if deleted else send_404(handler)

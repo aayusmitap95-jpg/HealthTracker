@@ -2,7 +2,7 @@ from core.responses import send_json, send_404
 from core.request import parse_json_body
 from services.medical_service import (
     medical_get_all,
-    mwdical_get_one,
+    medical_get_one,
     medical_create,
     medical_update,
     medical_delete,

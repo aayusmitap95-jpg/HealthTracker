@@ -77,12 +77,12 @@ def do_PUT(self):
         return update_user(self)
     if path == "/api/user/details":
         return update_user_details(self)
-    if path.startswith("/api/ativity/"):
+    if path.startswith("/api/activity/"):
         record_id = int(path.split("/")[-1])
         return update_activity_record(self, record_id)
     if path.startswith("/api/medical/"):
         record_id = int(path.split("/")[-1])
-        return update_medical_record(self, record_id)
+        return update_activity_record(self, record_id)
 
     return send_404(self)    
 
