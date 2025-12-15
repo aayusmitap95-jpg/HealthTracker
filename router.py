@@ -5,7 +5,7 @@ from urllib.parse import urlparse, parse_qs
 from controllers.user import (
     # create_user_details,
     get_all_users,
-    get_user_details,
+    # get_user_details,
     # update_user_details,
     # delete_user_details
 )
@@ -26,26 +26,17 @@ class HealthRouter(BaseHTTPRequestHandler):
     # READ (GET) 
     def do_GET(self):
         path = urlparse(self.path).path
+        print("PATH:", path)  # DEBUG
 
         # if path == "/api/user/details":
         #     return get_user_details(self)
-        # if path.startswith("/api/users/"):
-        # user_id = path.split("/")[-1]
-
-        # if user_id.isdigit():
-        #     return get_user_details(self, int(user_id))
+       
         
     # GET ALL USERS
         if path == "/api/users":
            return get_all_users(self)
 
-    # GET USER BY ID → /api/users/1
-        if path.startswith("/api/users/"):
-           parts = path.split("/")
-
-           if len(parts) == 4 and parts[3].isdigit():
-            user_id = int(parts[3])
-            return get_user_details(self, user_id)
+    
 
         return send_404(self)
 
