@@ -9,11 +9,11 @@ def db_user_get_all():
     return [dict(r) for r in rows]
 
 
-# def db_user_get_one(id):
-#     conn = get_connection()
-#     row = conn.execute("SELECT * FROM user_inputs WHERE id = ?", (id,)).fetchone()
-#     conn.close()
-#     return dict(row) if row else None
+def db_user_get_one(id):
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM user_inputs WHERE id = ?", (id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
 
 
 # def db_user_create(data):

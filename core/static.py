@@ -1,8 +1,8 @@
 # Serves static frontend files (HTML, CSS, JS) for the Health Tracker project
 
-import os
-import mimetypes
-from core.responses import send_404
+# import os
+# import mimetypes
+# from core.responses import send_404
 # # Fix JS MIME type for ES6 modules
 # mimetypes.add_type("application/javascript", ".js")
 
