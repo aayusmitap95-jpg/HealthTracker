@@ -6,15 +6,15 @@
 curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details"
 
 # B. Create/Save User Details
-# curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details/1" \
-#   -H "Content-Type: application/json" \
-#   -d '{
-#     "name": "Aayusmita Patro",
-#     "age": 20,
-#     "height": 160,
-#     "weight": 60,
-#     "gender": "Female"
-#   }'
+curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Aayusmita Patro",
+    "age": 20,
+    "height": 160,
+    "weight": 60,
+    "gender": "Female"
+  }'
 
 # # C. Update User Details
 

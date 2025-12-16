@@ -19,13 +19,18 @@ def get_user_details(handler, user_id):
 
 def create_user_details(handler):
     data = parse_json_body(handler)
-    if not data:
-        return send_json(handler, 400, {"error": "No data received"})
+    print("PARSED DATA:", data)
+
+    if data is None:
+        return send_json(handler, 400, {"error": "Request body required"})
+
+    if "error" in data:
+        return send_json(handler, 400, data)
+
     new_user = service_user_create(data)
+    print("NEW USER:", new_user)
     return send_json(handler, 201, new_user)
-    # data = parse_json_body(handler)
-    # new_user = service_user_create(data)
-    # return send_json(handler, 201, new_user)
+
 
 # def update_user_details(handler, user_id):
 #     data = parse_json_body(handler)

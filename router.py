@@ -16,7 +16,9 @@ from core.middleware import add_cors_headers
 
 
 class HealthRouter(BaseHTTPRequestHandler):
-
+    
+    def _set_cors(self):
+        add_cors_headers(self)
     # OPTIONS (CORS)
     def do_OPTIONS(self):
         self.send_response(200)
@@ -41,9 +43,10 @@ class HealthRouter(BaseHTTPRequestHandler):
     def do_POST(self):
         path = urlparse(self.path).path
         print("POST PATH:", path)
-
-        if path == "/api/user/details":
+        
+        if path.rstrip("/") == "/api/user/details":
             return create_user_details(self)
+     
 
         return send_404(self)
 
