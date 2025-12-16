@@ -3,9 +3,9 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 from controllers.user import (
-    # create_user_details,
+    create_user_details,
     get_all_users,
-    # get_user_details,
+    get_user_details,
     # update_user_details,
     # delete_user_details
 )
@@ -22,32 +22,31 @@ class HealthRouter(BaseHTTPRequestHandler):
         self.send_response(200)
         add_cors_headers(self)
         self.end_headers()
-
-    # READ (GET) 
     def do_GET(self):
         path = urlparse(self.path).path
-        print("PATH:", path)  # DEBUG
+        query = parse_qs(urlparse(self.path).query)
 
-        # if path == "/api/user/details":
-        #     return get_user_details(self)
-       
-        
-    # GET ALL USERS
-        if path == "/api/users":
-           return get_all_users(self)
+        print("GET PATH:", path, "QUERY:", query)
 
-    
+        if path == "/api/user/details":
+            # ?id=1 → get one
+            if "id" in query:
+                return get_user_details(self, int(query["id"][0]))
+
+            # no id → get all
+            return get_all_users(self)
 
         return send_404(self)
 
-      
+    def do_POST(self):
+        path = urlparse(self.path).path
+        print("POST PATH:", path)
 
-    #  CREATE (POST
-    # def do_POST(self):
-    #     if self.path == "/api/user/details":
-    #         return create_user_details(self)
+        if path == "/api/user/details":
+            return create_user_details(self)
 
-    #     return send_404(self)
+        return send_404(self)
+
 
     # # UPDATE (PUT) 
     # def do_PUT(self):

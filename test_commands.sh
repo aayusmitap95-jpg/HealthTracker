@@ -2,45 +2,37 @@
 ##################### API Observation Via Hopscotch
 ##################### API Observation Via CURL
 
-###########################################################
 # A. Get User Details
-###########################################################
 curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details"
 
-###########################################################
 # B. Create/Save User Details
-###########################################################
-# curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details" \
+# curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/api/user/details/1" \
 #   -H "Content-Type: application/json" \
 #   -d '{
 #     "name": "Aayusmita Patro",
-#     "age": 22,
+#     "age": 20,
 #     "height": 160,
-#     "weight": 54,
+#     "weight": 60,
 #     "gender": "Female"
 #   }'
 
-# ###########################################################
 # # C. Update User Details
-# ###########################################################
+
 # curl -X PUT "http://localhost:8000/api/user/details" \
 #   -H "Content-Type: application/json" \
 #   -d '{
 #     "name": "Aayusmita Updated",
-#     "age": 23,
+#     "age": 20,
 #     "height": 160,
-#     "weight": 55,
+#     "weight": 58,
 #     "gender": "Female"
 #   }'
 
-# ###########################################################
+
 # # D. Delete User Details
-# ###########################################################
 # curl -X DELETE "http://localhost:8000/api/user/details"
 
-# ###########################################################
 # # DB Observation Via SQLite Web
-# ###########################################################
 # # - install https://github.com/coleifer/sqlite-web
 # # - pip install sqlite-web
 # # - sqlite_web health_tracker.db

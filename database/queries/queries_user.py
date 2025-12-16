@@ -16,19 +16,19 @@ def db_user_get_one(id):
     return dict(row) if row else None
 
 
-# def db_user_create(data):
-#     conn = get_connection()
-#     now = datetime.now().isoformat()
+def db_user_create(data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
 
-#     cur = conn.execute("""
-#         INSERT INTO user_inputs (user_id, age, height, weight, gender, created_at)
-#         VALUES (?, ?, ?, ?, ?, ?)
-#     """, (data["user_id"], data["age"], data["height"], data["weight"], data["gender"], now))
+    cur = conn.execute("""
+        INSERT INTO user_inputs (user_id, age, height, weight, gender, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (data["user_id"], data["age"], data["height"], data["weight"], data["gender"], now))
 
-#     conn.commit()
-#     new_id = cur.lastrowid
-#     conn.close()
-#     return db_user_get_one(new_id)
+    conn.commit()
+    new_id = cur.lastrowid
+    conn.close()
+    return db_user_get_one(new_id)
 
 
 # def db_user_update(id, data):
