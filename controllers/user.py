@@ -16,20 +16,31 @@ def get_user_details(handler, user_id):
     return send_json(handler, 200, user) if user else send_404(handler)
 
 
-
 def create_user_details(handler):
-    data = parse_json_body(handler)
-    print("PARSED DATA:", data)
+    try:
+        data = parse_json_body(handler)
+        print("POST DATA:", data)   # 🔍 DEBUG LINE
 
-    if data is None:
-        return send_json(handler, 400, {"error": "Request body required"})
+        new_user = service_user_create(data)
+        return send_json(handler, 201, new_user)
 
-    if "error" in data:
-        return send_json(handler, 400, data)
+    except Exception as e:
+        print("❌ CREATE ERROR:", e)   # 🔥 THIS WILL SHOW THE REAL ISSUE
+        return send_json(handler, 500, {"error": str(e)})
 
-    new_user = service_user_create(data)
-    print("NEW USER:", new_user)
-    return send_json(handler, 201, new_user)
+# def create_user_details(handler):
+    # data = parse_json_body(handler)
+    # print("PARSED DATA:", data)
+
+    # if data is None:
+    #     return send_json(handler, 400, {"error": "Request body required"})
+
+    # if "error" in data:
+    #     return send_json(handler, 400, data)
+
+    # new_user = service_user_create(data)
+    # print("NEW USER:", new_user)
+    # return send_json(handler, 201, new_user)
 
 
 # def update_user_details(handler, user_id):

@@ -17,15 +17,15 @@ def send_json(handler, status, data):
     # convert python dictionary to json string
      handler.wfile.write(json.dumps(data).encode("utf-8"))
 
-# def send_html(handler, status, html):
-#     """
-#     Send HTML Content (if needed)
-#     """
-#     handler.send_responses(status)
-#     add_cors_headers(handler)
-#     handler.send_header("Content-Type", "text/html")
-#     handler.end_headers()
-#     handler.wfile.write(html.encode("utf-8"))
+def send_html(handler, status, html):
+    """
+    Send HTML Content (if needed)
+    """
+    handler.send_responses(status)
+    add_cors_headers(handler)
+    handler.send_header("Content-Type", "text/html")
+    handler.end_headers()
+    handler.wfile.write(html.encode("utf-8"))
 
 def send_404(handler):
      """
