@@ -63,7 +63,33 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/ac
 # # D. Delete User Activity
 curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1"
 
+# A. Get All Medical Records
+curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical"
 
+
+# B. Create Medical Record
+curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1,
+    "disease": "Diabetes",
+    "disease_type": "Chronic",
+    "genetic": "Yes",
+    "notes": "Family history present"
+  }'
+# C. Update Medical Record
+curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "disease_name": "Diabetes Type 2",
+    "disease_type": "Chronic",
+    "genetic": "Yes",
+    "notes": "Under control with medication"
+  }'
+
+
+# D. Delete Medical Record
+curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1"
 
 
 # # DB Observation Via SQLite Web
