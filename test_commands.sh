@@ -18,7 +18,7 @@ curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/u
 
 # # C. Update User Details
 
-curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users" \
+curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users/1" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Aayusmita Updated",
