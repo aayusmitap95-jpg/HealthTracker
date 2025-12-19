@@ -5,8 +5,8 @@
 # A. Get User Details
 curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users"
 
-B. Create/Save User Details
-curl -X POST "curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users"" \
+# B. Create/Save User Details
+curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Aayusmita Patro",
@@ -18,15 +18,15 @@ curl -X POST "curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app
 
 # # C. Update User Details
 
-# curl -X PUT "http://localhost:8000/api/user/details" \
-#   -H "Content-Type: application/json" \
-#   -d '{
-#     "name": "Aayusmita Updated",
-#     "age": 20,
-#     "height": 160,
-#     "weight": 58,
-#     "gender": "Female"
-#   }'
+curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Aayusmita Updated",
+    "age": 20,
+    "height": 160,
+    "weight": 58,
+    "gender": "Female"
+  }'
 
 
 # # D. Delete User Details

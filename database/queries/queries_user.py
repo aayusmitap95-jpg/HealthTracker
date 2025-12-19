@@ -37,30 +37,30 @@ def db_create(data):
     conn.close()
     return db_get_one(new_id)
 
-# def db_update(user_id, data):
-#     conn = get_connection()
-#     now = datetime.now().isoformat()
+def db_update(user_id, data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
 
 
-#     conn.execute(
-#     """
-#     UPDATE user_inputs
-#     SET name=?, age=?, height=?, weight=?, gender=?, updated_at=?
-#     WHERE id=?
-#     """,
-#     (
-#         data["name"],
-#         data["age"],
-#         data["height"],
-#         data["weight"],
-#         data["gender"],
-#         now,
-#         user_id
-#     )
-# )
-#     conn.commit()
-#     conn.close()
-#     return db_get_one(user_id)
+    conn.execute(
+    """
+    UPDATE user_inputs
+    SET name=?, age=?, height=?, weight=?, gender=?, updated_at=?
+    WHERE id=?
+    """,
+    (
+        data["name"],
+        data["age"],
+        data["height"],
+        data["weight"],
+        data["gender"],
+        now,
+        user_id
+    )
+)
+    conn.commit()
+    conn.close()
+    return db_get_one(user_id)
 
 # def db_delete(user_id):
 #     user = db_get_one(user_id)

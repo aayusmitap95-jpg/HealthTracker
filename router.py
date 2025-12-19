@@ -2,7 +2,7 @@ from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 
-from controllers.user import get_all_users, get_user, create_user
+from controllers.user import get_all_users, get_user, create_user, update_user
 from core.middleware import add_cors_headers
 from core.responses import send_404
 
@@ -35,12 +35,12 @@ class Router(BaseHTTPRequestHandler):
             send_404(self)
 
 
-    # def do_PUT(self):
-    #     if self.path.startswith('/users/'):
-    #         user_id = self.path.split('/')[-1]
-    #         update_user(self, int(user_id))
-    #     else:
-    #         send_404(self)
+    def do_PUT(self):
+        if self.path.startswith('/users/'):
+            user_id = self.path.split('/')[-1]
+            update_user(self, int(user_id))
+        else:
+            send_404(self)
     def log_message(self, format, *args):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{timestamp}] [Server] {format % args}")
