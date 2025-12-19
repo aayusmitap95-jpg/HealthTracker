@@ -32,6 +32,40 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/us
 # # D. Delete User Details
 curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users/1"
 
+
+
+# A. Get All User Activities
+curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities"
+
+
+# # B. Create / Save User Activity
+# curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities" \
+#   -H "Content-Type: application/json" \
+#   -d '{
+#     "user_id": 1,
+#     "steps": 7500,
+#     "water_intake": 2.5,
+#     "calories_burned": 420
+#   }'
+
+
+# # C. Update User Activity
+# curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1" \
+#   -H "Content-Type: application/json" \
+#   -d '{
+#     "user_id": 1,
+#     "steps": 9000,
+#     "water_intake": 3.0,
+#     "calories_burned": 500
+#   }'
+
+
+# # D. Delete User Activity
+# curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1"
+
+
+
+
 # # DB Observation Via SQLite Web
 # # - install https://github.com/coleifer/sqlite-web
 # # - pip install sqlite-web
