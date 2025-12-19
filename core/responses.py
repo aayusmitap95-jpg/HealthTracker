@@ -1,40 +1,20 @@
+# Sends HTTP responses back to the client (JSON or HTML)
+
 import json
 from core.middleware import add_cors_headers
 
 def send_json(handler, status, data):
-     """
-     Sends a JSON response to the frontend.
-     Used for:
-     - Login/Register
-     - User input CRUD
-     - Daily activity CRUD
-     - Medical record CRUD
-     """
-     handler.send_response(status)
-     add_cors_headers(handler)
-     handler.send_header("Content-Type", "application/json")
-     handler.end_headers()
-    # convert python dictionary to json string
-     handler.wfile.write(json.dumps(data).encode("utf-8"))
+    handler.send_response(status)
+    add_cors_headers(handler)
+    handler.send_header("Content-Type", "application/json")
+    handler.end_headers()
+    handler.wfile.write(json.dumps(data).encode("utf-8"))
 
-def send_html(handler, status, html):
-    """
-    Send HTML Content (if needed)
-    """
-    handler.send_responses(status)
+def send_404(handler):
+    handler.send_response(404)
     add_cors_headers(handler)
     handler.send_header("Content-Type", "text/html")
     handler.end_headers()
-    handler.wfile.write(html.encode("utf-8"))
-
-def send_404(handler):
-     """
-     page not found response
-     """
-     handler.send_response(404)
-     add_cors_headers(handler)
-     handler.send_header("Content-Type", "text/html")
-     handler.end_headers()
-     handler.wfile.write(b"<h1>404 - Resources Not Found</h1>")
+    handler.wfile.write(b"<h1>404 Not Found</h1>")
      
 

@@ -1,8 +1,8 @@
-import sqlite3
-import os
+# Opens a connection to SQLite and returns it for DB operations
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_FILE = os.path.join(BASE_DIR, "health_tracker.db")
+import sqlite3
+
+DB_FILE = "health_tracker.db"
 
 def get_connection():
     conn = sqlite3.connect(DB_FILE)
@@ -11,10 +11,9 @@ def get_connection():
 
 def init_database():
     conn = get_connection()
-
     conn.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS user_inputs (
+           id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             age INTEGER,
             gender TEXT,
@@ -24,11 +23,9 @@ def init_database():
             updated_at TEXT
         )
     """)
-
     conn.commit()
     conn.close()
-
-    print("✓ Health Tracker Database initialized")
+    print("✓ Database initialized")
 
 
 
