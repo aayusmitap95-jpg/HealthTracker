@@ -13,27 +13,27 @@ def db_user_get_one(id):
     conn.close()
     return dict(row) if row else None
 
-def db_user_create(data):
-    conn = get_connection()
-    now = datetime.now().isoformat()
+# def db_user_create(data):
+#     conn = get_connection()
+#     now = datetime.now().isoformat()
 
-    cur = conn.execute("""
-        INSERT INTO users (name, age, gender, height, weight, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (
-        data.get("name"),
-        data.get("age"),
-        data.get("gender"),
-        data.get("height"),
-        data.get("weight"),
-        now,
-        now
-    ))
+#     cur = conn.execute("""
+#         INSERT INTO users (name, age, gender, height, weight, created_at, updated_at)
+#         VALUES (?, ?, ?, ?, ?, ?, ?)
+#     """, (
+#         data.get("name"),
+#         data.get("age"),
+#         data.get("gender"),
+#         data.get("height"),
+#         data.get("weight"),
+#         now,
+#         now
+#     ))
 
-    conn.commit()
-    new_id = cur.lastrowid
-    conn.close()
-    return db_user_get_one(new_id)
+#     conn.commit()
+#     new_id = cur.lastrowid
+#     conn.close()
+#     return db_user_get_one(new_id)
 
 
 

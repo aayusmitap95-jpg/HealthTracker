@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 from controllers.user import (
-    create_user_details,
+    # create_user_details,
     get_all_users,
     get_user_details,
     # update_user_details,
@@ -40,32 +40,17 @@ class HealthRouter(BaseHTTPRequestHandler):
 
         return send_404(self)
 
-    def do_POST(self):
-        path = urlparse(self.path).path
-        print("POST PATH:", path)
+    # def do_POST(self):
+    #     path = urlparse(self.path).path
+    #     print("POST PATH:", path)
         
-        if path.rstrip("/") == "/api/user/details":
-            return create_user_details(self)
+    #     if path.rstrip("/") == "/api/user/details":
+    #         return create_user_details(self)
      
 
-        return send_404(self)
-
-
-    # # UPDATE (PUT) 
-    # def do_PUT(self):
-    #     if self.path == "/api/user/details":
-    #         return update_user_details(self)
-
     #     return send_404(self)
 
-    # #  DELETE 
-    # def do_DELETE(self):
-    #     if self.path == "/api/user/details":
-    #         return delete_user_details(self)
 
-    #     return send_404(self)
-
-    # LOGGER 
     def log_message(self, format, *args):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{timestamp}] [Server] {format % args}")

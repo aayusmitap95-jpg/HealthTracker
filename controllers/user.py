@@ -1,7 +1,7 @@
 from core.request import parse_json_body
 from core.responses import send_json, send_404
 from services.user_service import (
-    service_user_create,
+    # service_user_create,
     service_user_get_all,
     service_user_get_one,
 #     service_user_update,
@@ -16,17 +16,17 @@ def get_user_details(handler, user_id):
     return send_json(handler, 200, user) if user else send_404(handler)
 
 
-def create_user_details(handler):
-    try:
-        data = parse_json_body(handler)
-        print("POST DATA:", data)   # 🔍 DEBUG LINE
+# def create_user_details(handler):
+#     try:
+#         data = parse_json_body(handler)
+#         print("POST DATA:", data)   # 🔍 DEBUG LINE
 
-        new_user = service_user_create(data)
-        return send_json(handler, 201, new_user)
+#         new_user = service_user_create(data)
+#         return send_json(handler, 201, new_user)
 
-    except Exception as e:
-        print("❌ CREATE ERROR:", e)   # 🔥 THIS WILL SHOW THE REAL ISSUE
-        return send_json(handler, 500, {"error": str(e)})
+#     except Exception as e:
+#         print("❌ CREATE ERROR:", e)   # 🔥 THIS WILL SHOW THE REAL ISSUE
+#         return send_json(handler, 500, {"error": str(e)})
 
 # def create_user_details(handler):
     # data = parse_json_body(handler)
