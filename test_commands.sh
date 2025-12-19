@@ -81,10 +81,11 @@ curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/m
 curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1" \
   -H "Content-Type: application/json" \
   -d '{
-    "disease_name": "Diabetes Type 2",
+    "user_id": 1,
+    "disease": "Diabetes",
     "disease_type": "Chronic",
     "genetic": "Yes",
-    "notes": "Under control with medication"
+    "notes": "Updated notes"
   }'
 
 
@@ -96,3 +97,4 @@ curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev
 # # - install https://github.com/coleifer/sqlite-web
 # # - pip install sqlite-web
 # # - sqlite_web health_tracker.db
+
