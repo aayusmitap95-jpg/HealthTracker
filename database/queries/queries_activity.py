@@ -33,23 +33,23 @@ def db_create(data):
     conn.close()
     return db_get_one(new_id)
 
-# def db_update(activity_id, data):
-#     conn = get_connection()
-#     now = datetime.now().isoformat()
-#     conn.execute("""
-#         UPDATE user_activity
-#         SET steps=?, water_intake=?, calories_burned=?, updated_at=?
-#         WHERE id=?
-#     """, (
-#         data["steps"],
-#         data["water_intake"],
-#         data["calories_burned"],
-#         now,
-#         activity_id
-#     ))
-#     conn.commit()
-#     conn.close()
-#     return db_get_one(activity_id)
+def db_update(activity_id, data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+    conn.execute("""
+        UPDATE user_activity
+        SET steps=?, water_intake=?, calories_burned=?, updated_at=?
+        WHERE id=?
+    """, (
+        data["steps"],
+        data["water_intake"],
+        data["calories_burned"],
+        now,
+        activity_id
+    ))
+    conn.commit()
+    conn.close()
+    return db_get_one(activity_id)
 
 # def db_delete(activity_id):
 #     conn = get_connection()

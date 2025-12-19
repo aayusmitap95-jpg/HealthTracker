@@ -39,25 +39,25 @@ curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/ac
 
 
 # # B. Create / Save User Activity
-# curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities" \
-#   -H "Content-Type: application/json" \
-#   -d '{
-#     "user_id": 1,
-#     "steps": 7500,
-#     "water_intake": 2.5,
-#     "calories_burned": 420
-#   }'
+curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1,
+    "steps": 7500,
+    "water_intake": 2.5,
+    "calories_burned": 420
+  }'
 
 
 # # C. Update User Activity
-# curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1" \
-#   -H "Content-Type: application/json" \
-#   -d '{
-#     "user_id": 1,
-#     "steps": 9000,
-#     "water_intake": 3.0,
-#     "calories_burned": 500
-#   }'
+curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_id": 1,
+    "steps": 9000,
+    "water_intake": 3.0,
+    "calories_burned": 500
+  }'
 
 
 # # D. Delete User Activity

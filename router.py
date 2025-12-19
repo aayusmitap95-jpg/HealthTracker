@@ -16,7 +16,7 @@ from controllers.activity import (
     get_all_activities,
     get_activity,
     create_activity,
-#     update_activity,
+    update_activity,
 #     delete_activity
  )
 
@@ -81,12 +81,12 @@ class Router(BaseHTTPRequestHandler):
             user_id = int(self.path.split("/")[-1])
             return update_user(self, user_id)
 
-        # ACTIVITY
-        # elif self.path.startswith("/activities/"):
-        #     activity_id = int(self.path.split("/")[-1])
-        #     return update_activity(self, activity_id)
+       # ACTIVITY
+        elif self.path.startswith("/activities/"):
+            activity_id = int(self.path.split("/")[-1])
+            return update_activity(self, activity_id)
 
-        # return send_404(self)
+        return send_404(self)
 
     # DELETE
     def do_DELETE(self):
