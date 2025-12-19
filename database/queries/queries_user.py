@@ -15,27 +15,27 @@ def db_get_one(user_id):
     conn.close()
     return dict(row) if row else None
 
-# def db_create(data):
-#     conn = get_connection()
-#     now = datetime.now().isoformat()
-#     cur = conn.execute(
-#         """
-#         INSERT INTO user_inputs (name, age, height, weight, gender, created_at)
-#         VALUES (?, ?, ?, ?, ?, ?)
-#         """,
-#         (
-#             data["name"],
-#             data["age"],
-#             data["height"],
-#             data["weight"],
-#             data["gender"],
-#             now
-#         )
-#     )
-#     conn.commit()
-#     new_id = cur.lastrowid
-#     conn.close()
-#     return db_get_one(new_id)
+def db_create(data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+    cur = conn.execute(
+        """
+        INSERT INTO user_inputs (name, age, height, weight, gender, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            data["name"],
+            data["age"],
+            data["height"],
+            data["weight"],
+            data["gender"],
+            now
+        )
+    )
+    conn.commit()
+    new_id = cur.lastrowid
+    conn.close()
+    return db_get_one(new_id)
 
 # def db_update(user_id, data):
 #     conn = get_connection()

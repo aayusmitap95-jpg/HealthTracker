@@ -5,7 +5,7 @@ from core.request import parse_json_body
 from services.user_service import (
     service_get_all
     , service_get_one
-    # , service_create
+    , service_create
     # , service_update
     # , service_delete
 )
@@ -17,10 +17,10 @@ def get_user(handler, user_id):
     user = service_get_one(user_id)
     return send_json(handler, 200, user) if user else send_404(handler)
 
-# def create_user(handler):
-#     data = parse_json_body(handler)
-#     new_user = service_create(data)
-#     return send_json(handler, 201, new_user)
+def create_user(handler):
+    data = parse_json_body(handler)
+    new_user = service_create(data)
+    return send_json(handler, 201, new_user)
 
 # def update_user(handler, user_id):
 #     data = parse_json_body(handler)
