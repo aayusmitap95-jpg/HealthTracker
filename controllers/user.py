@@ -7,7 +7,7 @@ from services.user_service import (
     , service_get_one
     , service_create
     , service_update
-    # , service_delete
+    , service_delete
 )
 
 def get_all_users(handler):
@@ -28,7 +28,7 @@ def update_user(handler, user_id):
     return send_json(handler, 200, updated) if updated else send_404(handler)
 
 
-# def delete_user(handler):
-#     user_id = int(handler.path.split("/")[-1])
-#     service_delete(user_id)
-#     return send_json(handler, 200, {"message": "User deleted"})
+def delete_user(handler):
+    user_id = int(handler.path.split("/")[-1])
+    service_delete(user_id)
+    return send_json(handler, 200, {"message": "User deleted"})

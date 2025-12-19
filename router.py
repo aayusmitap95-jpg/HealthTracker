@@ -2,7 +2,7 @@ from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 
-from controllers.user import get_all_users, get_user, create_user, update_user
+from controllers.user import get_all_users, get_user, create_user, update_user, delete_user
 from core.middleware import add_cors_headers
 from core.responses import send_404
 
@@ -39,6 +39,11 @@ class Router(BaseHTTPRequestHandler):
         if self.path.startswith('/users/'):
             user_id = self.path.split('/')[-1]
             update_user(self, int(user_id))
+        else:
+            send_404(self)
+    def do_DELETE(self):
+        if self.path.startswith('/users/'):
+            delete_user(self)
         else:
             send_404(self)
     def log_message(self, format, *args):

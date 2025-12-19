@@ -30,7 +30,7 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/us
 
 
 # # D. Delete User Details
-# curl -X DELETE "http://localhost:8000/api/user/details"
+curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users/1"
 
 # # DB Observation Via SQLite Web
 # # - install https://github.com/coleifer/sqlite-web

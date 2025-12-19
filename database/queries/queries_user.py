@@ -62,16 +62,16 @@ def db_update(user_id, data):
     conn.close()
     return db_get_one(user_id)
 
-# def db_delete(user_id):
-#     user = db_get_one(user_id)
-#     if not user:
-#         return None
+def db_delete(user_id):
+    user = db_get_one(user_id)
+    if not user:
+        return None
 
-#     conn = get_connection()
-#     conn.execute("DELETE FROM user_inputs WHERE id=?", (user_id,))
-#     conn.commit()
-#     conn.close()
-#     return user
+    conn = get_connection()
+    conn.execute("DELETE FROM user_inputs WHERE id=?", (user_id,))
+    conn.commit()
+    conn.close()
+    return user
 
 
 

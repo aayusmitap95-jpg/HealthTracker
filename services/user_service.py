@@ -6,7 +6,7 @@ from database.queries.queries_user import (
     , db_get_one
     , db_create
     , db_update
-    # , db_delete
+    , db_delete
 )
 
 def service_get_all():
@@ -21,6 +21,6 @@ def service_create(data):
 def service_update(user_id, data):
     return db_update(user_id, data)
 
-# def service_delete(user_id):
-#     return db_delete(user_id)
+def service_delete(user_id):
+    return db_delete(user_id)
 
