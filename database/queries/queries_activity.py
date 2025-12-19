@@ -51,8 +51,8 @@ def db_update(activity_id, data):
     conn.close()
     return db_get_one(activity_id)
 
-# def db_delete(activity_id):
-#     conn = get_connection()
-#     conn.execute("DELETE FROM user_activity WHERE id=?", (activity_id,))
-#     conn.commit()
-#     conn.close()
+def db_delete(activity_id):
+    conn = get_connection()
+    conn.execute("DELETE FROM user_activity WHERE id=?", (activity_id,))
+    conn.commit()
+    conn.close()

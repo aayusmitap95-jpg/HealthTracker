@@ -17,7 +17,7 @@ from controllers.activity import (
     get_activity,
     create_activity,
     update_activity,
-#     delete_activity
+    delete_activity
  )
 
 from core.middleware import add_cors_headers
@@ -91,15 +91,20 @@ class Router(BaseHTTPRequestHandler):
     # DELETE
     def do_DELETE(self):
 
-        # USER
+    # USER
         if self.path.startswith("/users/"):
             return delete_user(self)
 
-        # ACTIVITY
-        # elif self.path.startswith("/activities/"):
-        #     return delete_activity(self)
+    # ACTIVITY ✅ FIXED
+        elif self.path.startswith("/activities/"):
+            try:
+                activity_id = int(self.path.split("/")[-1])
+                return delete_activity(self, activity_id)
+            except ValueError:
+                    return send_404(self)
 
-        # return send_404(self)
+        return send_404(self)
+
 
     # LOGGER
     def log_message(self, format, *args):

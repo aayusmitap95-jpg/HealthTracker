@@ -61,7 +61,7 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/ac
 
 
 # # D. Delete User Activity
-# curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1"
+curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/activities/1"
 
 
 

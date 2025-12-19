@@ -5,7 +5,7 @@ from services.activity_service import (
     service_get_one,
     service_create,
     service_update, 
-    # service_delete
+    service_delete
 )
 
 def get_all_activities(handler):
@@ -24,6 +24,6 @@ def update_activity(handler, activity_id):
     updated = service_update(activity_id, data)
     return send_json(handler, 200, updated) if updated else send_404(handler)
 
-# def delete_activity(handler, activity_id):
-#     service_delete(activity_id)
-#     return send_json(handler, 200, {"message": "Activity deleted"})
+def delete_activity(handler, activity_id):
+    service_delete(activity_id)
+    return send_json(handler, 200, {"message": "Activity deleted"})
