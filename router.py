@@ -1,6 +1,8 @@
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
+from core.static import serve_static
+
 
 # USER controllers
 from controllers.user import (
@@ -31,6 +33,47 @@ from controllers.medical import (
 
 from core.middleware import add_cors_headers
 from core.responses import send_404
+
+# UI ROUTES FOR SPA
+FRONTEND_ROUTES = {"/", "/home", "/users", "/medical", "/activity"}
+
+def handle_ui_routes(handler, path):
+    """
+    Handles routing for SPA pages and static frontend assets.
+    """
+
+    # 1. Serve the SPA entry page for routes (/, /home, /users, /medical, /activity)
+    if path in FRONTEND_ROUTES:
+        serve_static(handler, "frontend/pages/index.html")
+        return True
+
+    # 2. Handle direct HTML access (ex: /users.html)
+    if path.endswith(".html"):
+        file_name = path.replace("/", "")       # users.html → users
+        page_name = file_name.replace(".html", "")
+
+        if page_name in FRONTEND_ROUTES:
+            serve_static(handler, "frontend/pages/index.html")
+            return True
+
+        # If it exists inside /frontend/pages, serve it directly
+        serve_static(handler, f"frontend/pages/{file_name}")
+        return True
+
+    # 3. Serve frontend static assets (CSS, JS, images)
+    if path.startswith("/frontend/"):
+        serve_static(handler, path.lstrip("/"))
+        return True
+
+    # 4. Serve OpenAPI
+    if path == "/openapi.yaml":
+        serve_static(handler, "openapi.yaml")
+        return True
+
+    return False
+
+
+
 
 
 class Router(BaseHTTPRequestHandler):

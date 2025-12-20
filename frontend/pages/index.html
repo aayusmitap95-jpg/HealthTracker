@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker | User</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" type="image/png">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
+
+    <style>
+        body {
+            font-family: "Outfit", sans-serif;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Environment variables -->
+    <script src="/frontend/env.js"></script>
+
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- SPA Root Container -->
+    <main id="app" class="max-w-2xl mx-auto p-6 flex-grow"></main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JS Modules -->
+    <script type="module">
+        import { loadComponent } from "/frontend/assets/js/utils/loadComponent.js";
+        import { initRouterEvents, router } from "/frontend/assets/js/router/viewRouter.js";
+
+        // Load header/footer
+        loadComponent("#header", "/frontend/assets/js/components/Header.html");
+        loadComponent("#footer", "/frontend/assets/js/components/Footer.html");
+
+        // SPA routing
+        initRouterEvents();
+        router();
+    </script>
+
+</body>
+</html>
