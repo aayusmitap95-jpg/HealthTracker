@@ -105,9 +105,12 @@ class Router(BaseHTTPRequestHandler):
             activity_id = int(self.path.split("/")[-1])
             return update_activity(self, activity_id)
 
-        elif self.path.startswith("/medical/"):   # ✅
-            medical_id = int(self.path.split("/")[-1])
-            return update_medical(self, medical_id)
+        elif self.path.startswith("/medical/"):
+            try:
+                medical_id = int(self.path.split("/")[-1])
+                return update_medical(self, medical_id)
+            except ValueError:
+                return send_404(self)
 
         return send_404(self)
 

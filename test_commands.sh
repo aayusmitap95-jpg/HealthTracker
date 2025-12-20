@@ -78,7 +78,7 @@ curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/m
     "notes": "Family history present"
   }'
 # C. Update Medical Record
-curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1" \
+curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/2" \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": 1,
@@ -90,7 +90,7 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/me
 
 
 # D. Delete Medical Record
-curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1"
+curl -X DELETE "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/2"
 
 
 # # DB Observation Via SQLite Web
