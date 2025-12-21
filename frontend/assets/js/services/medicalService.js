@@ -1,7 +1,11 @@
-const API_URL = "/api/medical";
+const API_URL = window.ENV.MEDICAL_API;
 
-export const apiGetAll = () => fetch(API_URL).then(r => r.json());
-export const apiGetOne = id => fetch(`${API_URL}/${id}`).then(r => r.json());
+export const apiGetAll = () =>
+  fetch(API_URL).then(r => r.json());
+
+export const apiGetOne = id =>
+  fetch(`${API_URL}/${id}`).then(r => r.json());
+
 export const apiCreate = data =>
   fetch(API_URL, {
     method: "POST",
@@ -18,3 +22,4 @@ export const apiUpdate = (id, data) =>
 
 export const apiDelete = id =>
   fetch(`${API_URL}/${id}`, { method: "DELETE" });
+

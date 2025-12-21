@@ -1,4 +1,4 @@
-const API_URL = "/activities";
+const API_URL = window.ENV.ACTIVITIES_API;
 
 export const apiGetAll = () =>
   fetch(API_URL).then(r => r.json());
@@ -21,6 +21,5 @@ export const apiUpdate = (id, data) =>
   });
 
 export const apiDelete = id =>
-  fetch(`${API_URL}/${id}`, {
-    method: "DELETE"
-  });
+  fetch(`${API_URL}/${id}`, { method: "DELETE" });
+
