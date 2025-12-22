@@ -10,7 +10,7 @@ export function renderUserTable(users) {
 
   body.innerHTML = "";
 
-  if (users.length === 0) {
+  if (!Array.isArray(users) || users.length === 0) {
     noUsers.style.display = "block";
     return;
   }
