@@ -30,8 +30,18 @@ export function initMedicalController() {
 }
 
 async function loadMedical() {
+    const spinner = $("loadingSpinner");
+  const table = $("medicalTableContainer");
+
+  if (spinner) spinner.style.display = "block";
+  if (table) table.classList.add("hidden");
+
   const data = await api.apiGetAll();
   renderMedicalTable(data);
+
+  if (spinner) spinner.style.display = "none";
+  if (table) table.classList.remove("hidden");
+  
 }
 
 export async function editMedical(id) {

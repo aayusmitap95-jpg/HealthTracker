@@ -1,25 +1,37 @@
 const API_URL = window.ENV.ACTIVITIES_API;
 
-export const apiGetAll = () =>
-  fetch(API_URL).then(r => r.json());
+async function safeJson(res) {
+  try {
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
 
-export const apiGetOne = id =>
-  fetch(`${API_URL}/${id}`).then(r => r.json());
+export async function apiGetAll() {
+  const res = await fetch(API_URL);
+  if (!res.ok) return [];
+  return safeJson(res);
+}
 
-export const apiCreate = data =>
-  fetch(API_URL, {
+export function apiCreate(data) {
+  return fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
+}
 
-export const apiUpdate = (id, data) =>
-  fetch(`${API_URL}/${id}`, {
+export function apiUpdate(id, data) {
+  return fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
+}
 
-export const apiDelete = id =>
-  fetch(`${API_URL}/${id}`, { method: "DELETE" });
-
+export function apiDelete(id) {
+  return fetch(`${API_URL}/${id}`, {
+    method: "DELETE"
+  });
+}

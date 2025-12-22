@@ -4,14 +4,15 @@ async function safeJson(res) {
   try {
     return await res.json();
   } catch {
-    return null;
+    return [];
   }
 }
 
 export async function apiGetAll() {
   const res = await fetch(API_URL);
   if (!res.ok) return [];
-  return safeJson(res);
+  const data = await safeJson(res);
+  return Array.isArray(data) ? data : [];
 }
 
 export async function apiGetOne(id) {
@@ -20,7 +21,7 @@ export async function apiGetOne(id) {
   return safeJson(res);
 }
 
-export function apiCreate(data) {
+export async function apiCreate(data) {
   return fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -28,7 +29,7 @@ export function apiCreate(data) {
   });
 }
 
-export function apiUpdate(id, data) {
+export async function apiUpdate(id, data) {
   return fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -36,7 +37,7 @@ export function apiUpdate(id, data) {
   });
 }
 
-export function apiDelete(id) {
+export async function apiDelete(id) {
   return fetch(`${API_URL}/${id}`, { method: "DELETE" });
 }
 

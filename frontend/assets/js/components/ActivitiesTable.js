@@ -7,7 +7,7 @@ import {
 export function renderActivitiesTable(activities) {
   const body = $("activitiesTableBody");
   const noActivities = $("noActivities");
-
+  if (!body || !noActivities) return;
   body.innerHTML = "";
 
   if (!activities || activities.length === 0) {
