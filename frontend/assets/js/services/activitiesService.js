@@ -14,6 +14,13 @@ export async function apiGetAll() {
   return safeJson(res);
 }
 
+export async function apiGetOne(id) {
+  const res = await fetch(`${API_URL}/${id}`);
+  if (!res.ok) return null;
+  return res.json();
+}
+
+
 export function apiCreate(data) {
   return fetch(API_URL, {
     method: "POST",
@@ -35,3 +42,4 @@ export function apiDelete(id) {
     method: "DELETE"
   });
 }
+

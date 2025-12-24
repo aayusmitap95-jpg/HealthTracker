@@ -1,9 +1,18 @@
 import { $ } from "../utils/dom.js";
 
-export const resetMedicalForm = () => $("medicalForm").reset();
+export function resetMedicalForm() {
+  $("medicalForm").reset();
+  $("submitBtn").textContent = "Add Record";
+  $("cancelBtn").classList.add("hidden");
+}
 
-export function fillMedicalForm(data) {
-  $("condition").value = data.condition;
-  $("medication").value = data.medication;
-  $("date").value = data.date;
+export function fillMedicalForm(record) {
+  $("user_id").value = record.user_id;
+  $("disease").value = record.disease;
+  $("disease_type").value = record.disease_type;
+  $("genetic").value = record.genetic;
+  $("notes").value = record.notes || "";
+
+  $("submitBtn").textContent = "Update Record";
+  $("cancelBtn").classList.remove("hidden");
 }
