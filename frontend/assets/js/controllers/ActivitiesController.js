@@ -1,19 +1,30 @@
 import {
   apiGetAll,
+  apiGetOne,
   apiCreate,
   apiUpdate,
   apiDelete
 } from "../services/activitiesService.js";
 
 import { renderActivitiesTable } from "../components/ActivitiesTable.js";
-import { $ } from "../utils/dom.js";
+import {
+  fillActivitiesForm,
+  resetActivitiesForm
+} from "../components/ActivitiesForm.js";
 
-let editingId = null;
+import { $ } from "../utils/dom.js";
+import { getState, setState } from "../state/store.js";
+import { showAlert } from "../components/Alert.js";
 
 export function initActivitiesController() {
+  const form = $("activityForm");
+  const cancelBtn = $("cancelBtn");
+
+  if (!form || !cancelBtn) return;
+
   loadActivities();
 
-  $("activityForm").addEventListener("submit", async (e) => {
+  form.onsubmit = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -23,16 +34,19 @@ export function initActivitiesController() {
       calories_burned: $("calories_burned").value
     };
 
-    if (editingId) {
-      await apiUpdate(editingId, data);
-      editingId = null;
-    } else {
-      await apiCreate(data);
-    }
+    const { editingId } = getState();
 
-    $("activityForm").reset();
-    loadActivities();
-  });
+    if (editingId) {
+      await updateActivity(editingId, data);
+    } else {
+      await createActivity(data);
+    }
+  };
+
+  cancelBtn.onclick = () => {
+    setState({ editingId: null });
+    resetActivitiesForm();
+  };
 }
 
 async function loadActivities() {
@@ -49,13 +63,38 @@ async function loadActivities() {
   table.classList.remove("hidden");
 }
 
-export function editActivity(id) {
-  editingId = id;
+async function createActivity(data) {
+  const res = await apiCreate(data);
+  if (res.ok) {
+    showAlert("Activity added");
+    resetActivitiesForm();
+    loadActivities();
+  }
+}
+
+export async function editActivity(id) {
+  const activity = await apiGetOne(id);
+  setState({ editingId: id });
+  fillActivitiesForm(activity);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function updateActivity(id, data) {
+  const res = await apiUpdate(id, data);
+  if (res.ok) {
+    showAlert("Activity updated");
+    setState({ editingId: null });
+    resetActivitiesForm();
+    loadActivities();
+  }
 }
 
 export async function deleteActivityAction(id) {
-  await apiDelete(id);
-  loadActivities();
+  if (!confirm("Delete this activity?")) return;
+
+  const res = await apiDelete(id);
+  if (res.ok) {
+    showAlert("Activity deleted");
+    loadActivities();
+  }
 }
-
-

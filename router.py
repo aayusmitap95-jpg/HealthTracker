@@ -37,7 +37,7 @@ from controllers.medical import (
 FRONTEND_ROUTES = {
     "/", "/home",
     "/users",
-    "/activity",
+    "/activities",
     "/medical"
 }
 
@@ -55,8 +55,9 @@ class Router(BaseHTTPRequestHandler):
         path = parsed.path
 
         # ===== FRONTEND (SPA) =====
-        if path in FRONTEND_ROUTES:
+        if not path.startswith("/api") and "." not in path:
             return serve_static(self, "frontend/pages/index.html")
+
 
         if path.startswith("/frontend/"):
             return serve_static(self, path.lstrip("/"))
@@ -72,10 +73,10 @@ class Router(BaseHTTPRequestHandler):
                 return send_404(self)
 
         # ===== ACTIVITY API =====
-        if path == "/api/activity":
+        if path == "/api/activities":
             return get_all_activities(self)
 
-        if path.startswith("/api/activity/"):
+        if path.startswith("/api/activities/"):
             try:
                 return get_activity(self, int(path.split("/")[-1]))
             except ValueError:
@@ -99,7 +100,7 @@ class Router(BaseHTTPRequestHandler):
         if self.path == "/api/users":
             return create_user(self)
 
-        if self.path == "/api/activity":
+        if self.path == "/api/activities":
             return create_activity(self)
 
         if self.path == "/api/medical":
@@ -113,7 +114,7 @@ class Router(BaseHTTPRequestHandler):
         if self.path.startswith("/api/users/"):
             return update_user(self, int(self.path.split("/")[-1]))
 
-        if self.path.startswith("/api/activity/"):
+        if self.path.startswith("/api/activities/"):
             return update_activity(self, int(self.path.split("/")[-1]))
 
         if self.path.startswith("/api/medical/"):
@@ -127,7 +128,7 @@ class Router(BaseHTTPRequestHandler):
         if self.path.startswith("/api/users/"):
             return delete_user(self)
 
-        if self.path.startswith("/api/activity/"):
+        if self.path.startswith("/api/activities/"):
             return delete_activity(self, int(self.path.split("/")[-1]))
 
         if self.path.startswith("/api/medical/"):
