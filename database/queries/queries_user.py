@@ -20,10 +20,11 @@ def db_create(data):
     now = datetime.now().isoformat()
     cur = conn.execute(
         """
-        INSERT INTO user_inputs (name, age, height, weight, gender, created_at)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO user_inputs (user_id, name, age, height, weight, gender, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
         (
+            data["user_id"],
             data["name"],
             data["age"],
             data["height"],
@@ -40,24 +41,23 @@ def db_create(data):
 def db_update(user_id, data):
     conn = get_connection()
     now = datetime.now().isoformat()
-
-
     conn.execute(
-    """
-    UPDATE user_inputs
-    SET name=?, age=?, height=?, weight=?, gender=?, updated_at=?
-    WHERE id=?
-    """,
-    (
-        data["name"],
-        data["age"],
-        data["height"],
-        data["weight"],
-        data["gender"],
-        now,
-        user_id
+        """
+        UPDATE user_inputs
+        SET user_id=?, name=?, age=?, height=?, weight=?, gender=?, updated_at=?
+        WHERE id=?
+        """,
+        (
+            data["user_id"],
+            data["name"],
+            data["age"],
+            data["height"],
+            data["weight"],
+            data["gender"],
+            now,
+            user_id   # ✅ added missing binding for WHERE id=?
+        )
     )
-)
     conn.commit()
     conn.close()
     return db_get_one(user_id)
@@ -72,6 +72,3 @@ def db_delete(user_id):
     conn.commit()
     conn.close()
     return user
-
-
-

@@ -24,6 +24,7 @@ export function initUserController() {
     e.preventDefault();
 
     const data = {
+      user_id: $("user_id").value,
       name: $("name").value.trim(),
       age: $("age").value,
       height: $("height").value,

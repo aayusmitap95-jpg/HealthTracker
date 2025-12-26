@@ -8,6 +8,7 @@ export function resetForm() {
 }
 
 export function fillForm(user) {
+  $("user_id").value = user.user_id;
   $("name").value = user.name;
   $("age").value = user.age;
   $("height").value = user.height;

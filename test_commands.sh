@@ -9,6 +9,7 @@ curl -X GET "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/us
 curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users" \
   -H "Content-Type: application/json" \
   -d '{
+    "user_id": 1,
     "name": "Aayusmita Patro",
     "age": 20,
     "height": 160,
@@ -21,6 +22,7 @@ curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/u
 curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/users/1" \
   -H "Content-Type: application/json" \
   -d '{
+    "user_id": 1,
     "name": "Aayusmita Updated",
     "age": 20,
     "height": 160,

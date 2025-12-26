@@ -14,6 +14,7 @@ def init_database():
     conn.execute("""
         CREATE TABLE IF NOT EXISTS user_inputs (
            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           user_id INTEGER,
             name TEXT,
             age INTEGER,
             gender TEXT,
