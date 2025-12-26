@@ -55,8 +55,9 @@ class Router(BaseHTTPRequestHandler):
         path = parsed.path
 
         # ===== FRONTEND (SPA) =====
-        if path in FRONTEND_ROUTES:
+        if not path.startswith("/api") and "." not in path:
             return serve_static(self, "frontend/pages/index.html")
+
 
         if path.startswith("/frontend/"):
             return serve_static(self, path.lstrip("/"))

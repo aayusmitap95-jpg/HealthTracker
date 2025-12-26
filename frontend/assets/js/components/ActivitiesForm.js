@@ -1,11 +1,17 @@
 import { $ } from "../utils/dom.js";
 
 export function resetActivitiesForm() {
-  $("activitiesForm").reset();
+  $("activityForm").reset();
+  $("submitBtn").textContent = "Add Activity";
+  $("cancelBtn").classList.add("hidden");
 }
 
-export function fillActivitiesForm(activities) {
-  $("type").value = activities.type;
-  $("duration").value = activities.duration;
-  $("calories").value = activities.calories;
+export function fillActivitiesForm(activity) {
+  $("user_id").value = activity.user_id;
+  $("steps").value = activity.steps;
+  $("water_intake").value = activity.water_intake;
+  $("calories_burned").value = activity.calories_burned;
+
+  $("submitBtn").textContent = "Update Activity";
+  $("cancelBtn").classList.remove("hidden");
 }

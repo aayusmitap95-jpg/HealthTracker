@@ -7,15 +7,22 @@ import {
 } from "../services/activitiesService.js";
 
 import { renderActivitiesTable } from "../components/ActivitiesTable.js";
-import { $ } from "../utils/dom.js";
+import {
+  fillActivitiesForm,
+  resetActivitiesForm
+} from "../components/ActivitiesForm.js";
 
-let editingId = null;
+import { $ } from "../utils/dom.js";
+import { getState, setState } from "../state/store.js";
+import { showAlert } from "../components/Alert.js";
 
 export function initActivitiesController() {
-  loadActivities();
-
   const form = $("activityForm");
-  if (!form) return;
+  const cancelBtn = $("cancelBtn");
+
+  if (!form || !cancelBtn) return;
+
+  loadActivities();
 
   form.onsubmit = async (e) => {
     e.preventDefault();
@@ -27,15 +34,18 @@ export function initActivitiesController() {
       calories_burned: $("calories_burned").value
     };
 
-    if (editingId) {
-      await apiUpdate(editingId, data);
-      editingId = null;
-    } else {
-      await apiCreate(data);
-    }
+    const { editingId } = getState();
 
-    form.reset();
-    loadActivities();
+    if (editingId) {
+      await updateActivity(editingId, data);
+    } else {
+      await createActivity(data);
+    }
+  };
+
+  cancelBtn.onclick = () => {
+    setState({ editingId: null });
+    resetActivitiesForm();
   };
 }
 
@@ -43,38 +53,48 @@ async function loadActivities() {
   const spinner = $("loadingSpinner");
   const table = $("activitiesTableContainer");
 
-  if (spinner) spinner.style.display = "block";
-  if (table) table.classList.add("hidden");
+  spinner.style.display = "block";
+  table.classList.add("hidden");
 
   const activities = await apiGetAll();
   renderActivitiesTable(activities);
 
-  if (spinner) spinner.style.display = "none";
-  if (table) table.classList.remove("hidden");
+  spinner.style.display = "none";
+  table.classList.remove("hidden");
+}
+
+async function createActivity(data) {
+  const res = await apiCreate(data);
+  if (res.ok) {
+    showAlert("Activity added");
+    resetActivitiesForm();
+    loadActivities();
+  }
 }
 
 export async function editActivity(id) {
-  const activity = await apiGetOne(id); 
-  if (!activity) {
-    alert("Activity not found");
-    return;
-  }
-
-  editingId = id;
-
-  $("user_id").value = activity.user_id;
-  $("steps").value = activity.steps;
-  $("water_intake").value = activity.water_intake;
-  $("calories_burned").value = activity.calories_burned;
-
+  const activity = await apiGetOne(id);
+  setState({ editingId: id });
+  fillActivitiesForm(activity);
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function updateActivity(id, data) {
+  const res = await apiUpdate(id, data);
+  if (res.ok) {
+    showAlert("Activity updated");
+    setState({ editingId: null });
+    resetActivitiesForm();
+    loadActivities();
+  }
 }
 
 export async function deleteActivityAction(id) {
   if (!confirm("Delete this activity?")) return;
-  await apiDelete(id);
-  loadActivities();
+
+  const res = await apiDelete(id);
+  if (res.ok) {
+    showAlert("Activity deleted");
+    loadActivities();
+  }
 }
-
-
-
