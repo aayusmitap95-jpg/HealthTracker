@@ -9,9 +9,8 @@ export function resetMedicalForm() {
 export function fillMedicalForm(record) {
   $("user_id").value = record.user_id;
   $("disease").value = record.disease;
-  $("disease_type").value = record.disease_type;
-  $("genetic").value = record.genetic;
-  $("notes").value = record.notes || "";
+  $("genetic_disease").value = record.genetic_disease;
+  $("allergies").value = record.allergies;
 
   $("submitBtn").textContent = "Update Record";
   $("cancelBtn").classList.remove("hidden");

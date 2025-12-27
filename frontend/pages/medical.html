@@ -7,32 +7,21 @@
   <!-- Add / Edit Medical Form -->
   <div class="bg-white p-5 rounded shadow mb-8">
     <h2 class="font-semibold mb-3 text-lg">Add Medical Record</h2>
-
     <form id="medicalForm" class="space-y-3">
       <input id="user_id" type="number" placeholder="User ID" required
         class="w-full border rounded px-3 py-2">
-
       <input id="disease" type="text" placeholder="Disease" required
         class="w-full border rounded px-3 py-2">
-
-      <input id="disease_type" type="text" placeholder="Disease Type"
+      <input id="genetic_disease" type="text" placeholder="Genetic Disease"
         class="w-full border rounded px-3 py-2">
-
-      <select id="genetic" class="w-full border rounded px-3 py-2">
-        <option value="">Genetic?</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-
-      <textarea id="notes" placeholder="Notes"
-        class="w-full border rounded px-3 py-2"></textarea>
+      <input id="allergies" type="text" placeholder="Allergies"
+        class="w-full border rounded px-3 py-2">
 
       <div class="flex space-x-2">
         <button id="submitBtn" type="submit"
           class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
           Add Record
         </button>
-
         <button id="cancelBtn" type="button"
           class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
           Cancel
@@ -50,18 +39,17 @@
     </div>
 
     <div id="medicalTableContainer" class="hidden overflow-x-auto">
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200">
+      <table class="min-w-full border-collapse">
+        <thead class="bg-gray-100 text-gray-700">
           <tr>
-            <th class="px-3 py-2">User ID</th>
-            <th class="px-3 py-2">Disease</th>
-            <th class="px-3 py-2">Disease Type</th>
-            <th class="px-3 py-2">Genetic</th>
-            <th class="px-3 py-2">Notes</th>
-            <th class="px-3 py-2">Actions</th>
+            <th class="px-4 py-2 text-left">User ID</th>
+            <th class="px-4 py-2 text-left">Disease</th>
+            <th class="px-4 py-2 text-left">Genetic Disease</th>
+            <th class="px-4 py-2 text-left">Allergies</th>
+            <th class="px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
-        <tbody id="medicalTableBody"></tbody>
+        <tbody id="medicalTableBody" class="divide-y divide-gray-200"></tbody>
       </table>
 
       <p id="noMedical" class="text-center text-gray-500 mt-3 hidden">

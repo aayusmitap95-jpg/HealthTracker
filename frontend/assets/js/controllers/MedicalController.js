@@ -30,9 +30,8 @@ export function initMedicalController() {
     const data = {
       user_id: $("user_id").value,
       disease: $("disease").value,
-      disease_type: $("disease_type").value,
-      genetic: $("genetic").value,
-      notes: $("notes").value
+      genetic_disease: $("genetic_disease").value,
+      allergies: $("allergies").value
     };
 
     const { editingId } = getState();

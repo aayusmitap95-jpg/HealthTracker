@@ -43,10 +43,11 @@ def db_update(medical_id, data):
     conn.execute(
         """
         UPDATE medical_info
-        SET disease=?, genetic_disease=?, allergies=?, updated_at=?
+        SET user_id=?, disease=?, genetic_disease=?, allergies=?, updated_at=?
         WHERE id=?
         """,
         (
+            data["user_id"],
             data["disease"],
             data.get("genetic_disease"),
             data.get("allergies"),

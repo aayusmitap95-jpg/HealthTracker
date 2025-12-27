@@ -75,9 +75,8 @@ curl -X POST "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/m
   -d '{
     "user_id": 1,
     "disease": "Diabetes",
-    "disease_type": "Chronic",
-    "genetic": "Yes",
-    "notes": "Family history present"
+    "genetic_disease": "nope",
+    "allergies": "None",
   }'
 # C. Update Medical Record
 curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/2" \
@@ -85,9 +84,8 @@ curl -X PUT "https://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/me
   -d '{
     "user_id": 1,
     "disease": "Diabetes",
-    "disease_type": "Chronic",
-    "genetic": "Yes",
-    "notes": "Updated notes"
+    "genetic_disease": "nope",
+    "allergies": "None",
   }'
 
 
