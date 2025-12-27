@@ -1,5 +1,4 @@
-# Actual SQL queries — Create, Read, Update, Delete (CRUD)
-
+# Better version with proper field mapping
 from datetime import datetime
 from database.connection import get_connection
 
@@ -7,24 +6,35 @@ def db_get_all():
     conn = get_connection()
     rows = conn.execute("SELECT * FROM user_inputs").fetchall()
     conn.close()
-    return [dict(r) for r in rows]
+    
+    # Map 'id' to 'user_id' for frontend
+    users = []
+    for row in rows:
+        user_dict = dict(row)
+        user_dict['user_id'] = user_dict['id']  # Add user_id field
+        users.append(user_dict)
+    return users
 
 def db_get_one(user_id):
     conn = get_connection()
     row = conn.execute("SELECT * FROM user_inputs WHERE id = ?", (user_id,)).fetchone()
     conn.close()
-    return dict(row) if row else None
+    
+    if row:
+        user_dict = dict(row)
+        user_dict['user_id'] = user_dict['id']  # Add user_id field
+        return user_dict
+    return None
 
 def db_create(data):
     conn = get_connection()
     now = datetime.now().isoformat()
     cur = conn.execute(
         """
-        INSERT INTO user_inputs (user_id, name, age, height, weight, gender, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO user_inputs (name, age, height, weight, gender, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
         """,
         (
-            data["user_id"],
             data["name"],
             data["age"],
             data["height"],
@@ -44,18 +54,17 @@ def db_update(user_id, data):
     conn.execute(
         """
         UPDATE user_inputs
-        SET user_id=?, name=?, age=?, height=?, weight=?, gender=?, updated_at=?
+        SET name=?, age=?, height=?, weight=?, gender=?, updated_at=?
         WHERE id=?
         """,
         (
-            data["user_id"],
             data["name"],
             data["age"],
             data["height"],
             data["weight"],
             data["gender"],
             now,
-            user_id   # ✅ added missing binding for WHERE id=?
+            user_id
         )
     )
     conn.commit()

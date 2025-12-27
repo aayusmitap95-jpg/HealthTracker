@@ -112,13 +112,25 @@ class Router(BaseHTTPRequestHandler):
     def do_PUT(self):
 
         if self.path.startswith("/api/users/"):
-            return update_user(self, int(self.path.split("/")[-1]))
+            try:
+                user_id = int(self.path.split("/")[-1])
+                return update_user(self, user_id)
+            except ValueError:
+                return send_404(self)
 
         if self.path.startswith("/api/activities/"):
-            return update_activity(self, int(self.path.split("/")[-1]))
+            try:
+                activity_id = int(self.path.split("/")[-1])
+                return update_activity(self, activity_id)
+            except ValueError:
+                return send_404(self)
 
         if self.path.startswith("/api/medical/"):
-            return update_medical(self, int(self.path.split("/")[-1]))
+            try:
+                medical_id = int(self.path.split("/")[-1])
+                return update_medical(self, medical_id)
+            except ValueError:
+                return send_404(self)
 
         return send_404(self)
 
@@ -126,13 +138,25 @@ class Router(BaseHTTPRequestHandler):
     def do_DELETE(self):
 
         if self.path.startswith("/api/users/"):
-            return delete_user(self)
+            try:
+                user_id = int(self.path.split("/")[-1])
+                return delete_user(self, user_id)
+            except ValueError:
+                return send_404(self)
 
         if self.path.startswith("/api/activities/"):
-            return delete_activity(self, int(self.path.split("/")[-1]))
+            try:
+                activity_id = int(self.path.split("/")[-1])
+                return delete_activity(self, activity_id)
+            except ValueError:
+                return send_404(self)
 
         if self.path.startswith("/api/medical/"):
-            return delete_medical(self, int(self.path.split("/")[-1]))
+            try:
+                medical_id = int(self.path.split("/")[-1])
+                return delete_medical(self, medical_id)
+            except ValueError:
+                return send_404(self)
 
         return send_404(self)
 

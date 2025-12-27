@@ -1,4 +1,3 @@
-
 import { $ } from "../utils/dom.js";
 
 export function resetForm() {
@@ -18,5 +17,3 @@ export function fillForm(user) {
   $("submitBtn").textContent = "Update User";
   $("cancelBtn").style.display = "inline-block";
 }
-
-

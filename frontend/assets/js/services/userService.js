@@ -1,14 +1,17 @@
 // const API_URL = window.ENV.USERS_API;
-const API_URL = "http://localhost:8000/api/users";
+const API_URL = "https://animated-space-system-g99vjvpx9pxfwg99-8000.app.github.dev/api/users";
 
 
 async function safeJson(res) {
+  const text = await res.text();
   try {
-    return await res.json();
+    return JSON.parse(text);
   } catch {
+    console.error("Invalid JSON:", text);
     return [];
   }
 }
+
 
 export async function apiGetAll() {
   const res = await fetch(API_URL);

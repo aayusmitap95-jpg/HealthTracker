@@ -24,11 +24,11 @@ export function initUserController() {
     e.preventDefault();
 
     const data = {
-      user_id: $("user_id").value,
+      user_id: $("user_id").value.trim(),  // Include user_id for manual entry
       name: $("name").value.trim(),
-      age: $("age").value,
-      height: $("height").value,
-      weight: $("weight").value,
+      age: parseInt($("age").value),
+      height: parseFloat($("height").value),
+      weight: parseFloat($("weight").value),
       gender: $("gender").value
     };
 
@@ -51,52 +51,84 @@ async function loadUsers() {
   const spinner = $("loadingSpinner");
   const table = $("usersTableContainer");
 
-  if (spinner) spinner.style.display = "block";
-  if (table) table.classList.add("hidden");
+  try {
+    spinner.style.display = "block";
+    table.classList.add("hidden");
 
-  const users = await apiGetAll();
-  setState({ users });
-  renderUserTable(users);
-
-  if (spinner) spinner.style.display = "none";
-  if (table) table.classList.remove("hidden");
+    const users = await apiGetAll();
+    setState({ users });
+    renderUserTable(users);
+  } catch (error) {
+    console.error("Failed to load users:", error);
+    showAlert("Failed to load users. Make sure the server is running.", "error");
+  } finally {
+    spinner.style.display = "none";
+    table.classList.remove("hidden");
+  }
 }
 
 
 async function createUser(data) {
-  const res = await apiCreate(data);
-  if (res.ok) {
+  try {
+    const res = await apiCreate(data);
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Server response:", errorText);
+      throw new Error("Create failed");
+    }
+
     showAlert("User added");
     resetForm();
     loadUsers();
+  } catch (err) {
+    showAlert("Failed to add user. Check console for details.", "error");
+    console.error(err);
   }
 }
 
 export async function editUser(id) {
-  const user = await apiGetOne(id);
-  setState({ editingId: id });
-  fillForm(user);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  try {
+    const user = await apiGetOne(id);
+    setState({ editingId: id });
+    fillForm(user);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (err) {
+    showAlert("Failed to load user for editing", "error");
+    console.error(err);
+  }
 }
 
 async function updateUser(id, data) {
-  const res = await apiUpdate(id, data);
-  if (res.ok) {
+  try {
+    const res = await apiUpdate(id, data);
+    if (!res.ok) {
+      throw new Error("Update failed");
+    }
+    
     showAlert("User updated");
     setState({ editingId: null });
     resetForm();
     loadUsers();
+  } catch (error) {
+    showAlert("Failed to update user", "error");
+    console.error(error);
   }
 }
 
 export async function deleteUserAction(id) {
   if (!confirm("Delete this user?")) return;
-  const res = await apiDelete(id);
-  if (res.ok) {
+
+  try {
+    const res = await apiDelete(id);
+    if (!res.ok) {
+      throw new Error("Delete failed");
+    }
+    
     showAlert("User deleted");
     loadUsers();
+  } catch (error) {
+    showAlert("Failed to delete user", "error");
+    console.error(error);
   }
 }
-
-
-
