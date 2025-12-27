@@ -38,9 +38,10 @@ def db_update(activity_id, data):
     now = datetime.now().isoformat()
     conn.execute("""
         UPDATE user_activity
-        SET steps=?, water_intake=?, calories_burned=?, updated_at=?
+        SET user_id=?, steps=?, water_intake=?, calories_burned=?, updated_at=?
         WHERE id=?
     """, (
+        data["user_id"],
         data["steps"],
         data["water_intake"],
         data["calories_burned"],
