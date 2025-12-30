@@ -54,7 +54,7 @@ def db_update(user_id, data):
     conn.execute(
         """
         UPDATE user_inputs
-        SET name=?, age=?, height=?, weight=?, gender=?, updated_at=?
+        SET  name=?, age=?, height=?, weight=?, gender=?, updated_at=?
         WHERE id=?
         """,
         (

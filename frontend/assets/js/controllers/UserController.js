@@ -24,7 +24,7 @@ export function initUserController() {
     e.preventDefault();
 
     const data = {
-      user_id: $("user_id").value.trim(),  // Include user_id for manual entry
+
       name: $("name").value.trim(),
       age: parseInt($("age").value),
       height: parseFloat($("height").value),
