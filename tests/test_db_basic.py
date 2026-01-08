@@ -30,8 +30,8 @@ class TestDatabaseBasics(unittest.TestCase):
 
         # Check: does 'students.db' file exist?
         self.assertTrue(
-            os.path.exists("users.db"),
-            "users.db file is missing"
+            os.path.exists("health_tracker.db"),
+            "health_tracker.db file is missing"
         )
 
     def test_can_connect_and_list_tables(self):
