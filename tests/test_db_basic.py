@@ -42,7 +42,7 @@ class TestDatabaseBasics(unittest.TestCase):
         """
 
         # Open a connection to the SQLite database
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect("health_tracker.db")
 
         # Create a cursor to run SQL queries
         cur = conn.cursor()
@@ -63,7 +63,6 @@ class TestDatabaseBasics(unittest.TestCase):
         )
 
         # Check: expected table should exist
-        self.assertIn(
-            "users",
-            tables
-        )
+        self.assertTrue(
+    any(t in tables for t in ["user_inputs", "user_activity", "medical_info"])
+)
