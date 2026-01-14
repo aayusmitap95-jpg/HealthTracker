@@ -1,3 +1,4 @@
+// frontend/assets/js/components/MedicalForm.js
 import { $ } from "../utils/dom.js";
 
 export function resetMedicalForm() {

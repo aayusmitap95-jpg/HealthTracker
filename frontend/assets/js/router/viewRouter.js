@@ -1,6 +1,8 @@
+// frontend/assets/js/router/viewRouter.js
 import { initUserController } from "../controllers/UserController.js";
 import { initActivitiesController } from "../controllers/ActivitiesController.js";
 import { initMedicalController } from "../controllers/MedicalController.js";
+import { initreportController } from "../controllers/reportController.js";
 
 // Load HTML into #app
 async function loadView(path) {
@@ -30,6 +32,10 @@ export async function router() {
   else if (path === "/medical") {
     await loadView("/frontend/pages/medical.html");
     initMedicalController();
+  }
+  else if (path === "/report") {
+    await loadView("/frontend/pages/report.html");
+    initreportController();
   }
 
   else {

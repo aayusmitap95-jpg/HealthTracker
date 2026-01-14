@@ -1,0 +1,33 @@
+<div class="max-w-5xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Report</h1>
+
+  <div id="loadingSpinner" class="text-center py-4">
+    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+  </div>
+
+  <div id="reportTableContainer" class="hidden overflow-x-auto">
+    <table class="min-w-full border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-3 py-2">User ID</th>
+          <th class="px-3 py-2">Name</th>
+          <th class="px-3 py-2">Age</th>
+          <th class="px-3 py-2">Height</th>
+          <th class="px-3 py-2">Weight</th>
+          <th class="px-3 py-2">Gender</th>
+          <th class="px-3 py-2">Steps</th>
+          <th class="px-3 py-2">Water</th>
+          <th class="px-3 py-2">Calories</th>
+          <th class="px-3 py-2">Disease</th>
+          <th class="px-3 py-2">Genetic Disease</th>
+          <th class="px-3 py-2">Allergies</th>
+        </tr>
+      </thead>
+      <tbody id="reportTableBody"></tbody>
+    </table>
+
+    <p id="noRows" class="text-center text-gray-500 mt-3 hidden">
+      No health data found.
+    </p>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+// frontend/assets/js/components/MedicalTable.js
 import { editMedical, deleteMedicalAction } from "../controllers/MedicalController.js";
 import { $ } from "../utils/dom.js";
 

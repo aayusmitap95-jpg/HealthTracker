@@ -1,5 +1,5 @@
 # Opens a connection to SQLite and returns it for DB operations
-
+#database/connection.py
 import sqlite3
 
 DB_FILE = "health_tracker.db"
@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS user_activity (
     water_intake REAL,
     calories_burned REAL,
     created_at TEXT,
-    updated_at TEXT
+    updated_at TEXT,
+    FOREIGN KEY (user_id) REFERENCES user_inputs(id)             
 )
 """)
     conn.execute("""
@@ -42,7 +43,8 @@ CREATE TABLE IF NOT EXISTS user_activity (
         genetic_disease TEXT,
         allergies TEXT,
         created_at TEXT,
-        updated_at TEXT
+        updated_at TEXT,
+        FOREIGN KEY (user_id) REFERENCES user_inputs(id)         
     )
 """)
 

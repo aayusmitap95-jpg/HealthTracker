@@ -43,7 +43,7 @@ class TestApiSmoke(unittest.TestCase):
         except Exception:
             cls.proc.kill()
 
-    def test_api_students_returns_200(self):
+    def test_api_users_returns_200(self):
         """
         This test checks one thing:
         - When we call /api/users, the server responds correctly

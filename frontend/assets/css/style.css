@@ -13,9 +13,11 @@ body {
 
 
 /* ------------- MAIN BOX CONTAINERS ------------- */
-/* Applies to Home, Users, Medical, Activity Pages */
+
+/* Applies to Home, Users, Medical, Activity, Report Pages */
 .max-w-3xl,
-.max-w-2xl {
+.max-w-2xl,
+.max-w-5xl {
   backdrop-filter: blur(14px);
   background: rgba(255, 255, 255, 0.25);
   border-radius: 18px;
@@ -23,6 +25,7 @@ body {
   box-shadow: 0 10px 35px rgba(0,0,0,0.25);
   padding: 20px !important;
 }
+
 
 
 /* ---------- HEADINGS ---------- */

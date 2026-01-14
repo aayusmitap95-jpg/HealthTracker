@@ -1,3 +1,4 @@
+#router.py
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
@@ -5,6 +6,7 @@ from urllib.parse import urlparse
 from core.static import serve_static
 from core.middleware import add_cors_headers
 from core.responses import send_404
+from controllers.report import get_health_report
 
 # -------- USER controllers --------
 from controllers.user import (
@@ -38,7 +40,8 @@ FRONTEND_ROUTES = {
     "/", "/home",
     "/users",
     "/activities",
-    "/medical"
+    "/medical",
+    "/reports"
 }
 
 class Router(BaseHTTPRequestHandler):
@@ -54,13 +57,19 @@ class Router(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
 
-        # ===== FRONTEND (SPA) =====
-        if not path.startswith("/api") and "." not in path:
-            return serve_static(self, "frontend/pages/index.html")
+        if path == "/favicon.ico":
+            return send_404(self)
+    # ---------- REPORT (JOIN API) ----------
+        if path == "/api/report":
+            return get_health_report(self)
+
+        # # ===== FRONTEND (SPA) =====
+        # if not path.startswith("/api") and "." not in path:
+        #     return serve_static(self, "frontend/pages/index.html")
 
 
-        if path.startswith("/frontend/"):
-            return serve_static(self, path.lstrip("/"))
+        # if path.startswith("/frontend/"):
+        #     return serve_static(self, path.lstrip("/"))
 
         # ===== USERS API =====
         if path == "/api/users":
@@ -91,9 +100,17 @@ class Router(BaseHTTPRequestHandler):
                 return get_medical(self, int(path.split("/")[-1]))
             except ValueError:
                 return send_404(self)
+            
+                # # ===== FRONTEND (SPA) =====
+        if not path.startswith("/api") and "." not in path:
+            return serve_static(self, "frontend/pages/index.html")
 
+
+        if path.startswith("/frontend/"):
+            return serve_static(self, path.lstrip("/"))
         return send_404(self)
 
+        
     # ---------------- POST ----------------
     def do_POST(self):
 
