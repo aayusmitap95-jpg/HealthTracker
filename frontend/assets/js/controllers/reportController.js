@@ -46,7 +46,7 @@ async function loadReport() {
   if (table) table.classList.add("hidden");
 
   try {
-    // Fetch data
+    // Fetch data from /api/report
     const rows = await apiGetReport();
     
     console.log("Report data received:", rows);

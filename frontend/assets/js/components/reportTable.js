@@ -39,27 +39,27 @@
 import { $ } from "../utils/dom.js";
 
 export function renderReportTable(rows = []) {
-  console.log("renderReportTable() called with", rows.length, "rows");
+  console.log("📊 renderReportTable() called with", rows.length, "rows");
   
   const body = $("reportTableBody");
   const empty = $("noRows");
 
   if (!body) {
-    console.error("ERROR: reportTableBody element not found!");
+    console.error("❌ ERROR: reportTableBody element not found!");
     return;
   }
 
   body.innerHTML = "";
 
   if (!rows.length) {
-    console.log("No rows to display");
+    console.log("⚠️ No rows to display");
     if (empty) empty.classList.remove("hidden");
     return;
   }
 
   if (empty) empty.classList.add("hidden");
 
-  rows.forEach((r) => {
+  rows.forEach((r, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td class="px-3 py-2"><strong>${r.user_id || 'N/A'}</strong></td>
@@ -78,5 +78,5 @@ export function renderReportTable(rows = []) {
     body.appendChild(tr);
   });
   
-  console.log("Table rendering complete");
+  console.log("✅ Table rendering complete -", rows.length, "rows rendered");
 }
