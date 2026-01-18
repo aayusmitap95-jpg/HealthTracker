@@ -8,8 +8,7 @@ import {
 import { renderActivitiesTable } from "../components/ActivitiesTable.js";
 import {
   fillActivitiesForm,
-  resetActivitiesForm,
-  fillUserDropdown
+  resetActivitiesForm
 } from "../components/ActivitiesForm.js";
 import { apiGetAll as apiGetAllUsers } from "../services/userService.js";
 import { $ } from "../utils/dom.js";
@@ -22,8 +21,8 @@ export function initActivitiesController() {
   
   if (!form || !cancelBtn) return;
   
-  // Load users for dropdown and activities
-  loadUsersAndActivities();
+  // Load latest user and activities
+  loadLatestUserAndActivities();
   
   form.onsubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +33,11 @@ export function initActivitiesController() {
       water_intake: $("water_intake").value,
       calories_burned: $("calories_burned").value
     };
+    
+    if (!data.user_id) {
+      showAlert("Please create a user first!", "error");
+      return;
+    }
     
     const { editingId } = getState();
     if (editingId) {
@@ -49,10 +53,26 @@ export function initActivitiesController() {
   };
 }
 
-async function loadUsersAndActivities() {
-  // Load users for dropdown
+async function loadLatestUserAndActivities() {
+  // Get all users and use the latest one
   const users = await apiGetAllUsers();
-  fillUserDropdown(users);
+  
+  if (users && users.length > 0) {
+    // Get the user with highest user_id (most recent)
+    const latestUser = users.reduce((max, user) => 
+      user.user_id > max.user_id ? user : max
+    );
+    
+    // Set the hidden field
+    $("user_id").value = latestUser.user_id;
+    
+    // Display who we're adding activity for
+    $("currentUserDisplay").textContent = 
+      `${latestUser.name} (ID: ${latestUser.user_id})`;
+  } else {
+    $("currentUserDisplay").textContent = "No users found - create a user first!";
+    $("currentUserDisplay").classList.add("text-red-600");
+  }
   
   // Load activities
   await loadActivities();
@@ -78,6 +98,8 @@ async function createActivity(data) {
     showAlert("Activity added");
     resetActivitiesForm();
     loadActivities();
+    // Reset the user_id after form reset
+    loadLatestUserAndActivities();
   } else {
     showAlert("Failed to add activity", "error");
   }

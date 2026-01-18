@@ -7,10 +7,18 @@
   <!-- Add / Edit Activity Form -->
   <div class="bg-white p-5 rounded shadow mb-8">
     <h2 class="font-semibold mb-3 text-lg">Add Activity</h2>
+    
+    <!-- Display which user we're adding activity for -->
+    <div class="mb-3 p-3 bg-blue-50 border border-blue-200 rounded">
+      <p class="text-sm text-gray-700">
+        Adding activity for: <strong id="currentUserDisplay">Loading...</strong>
+      </p>
+    </div>
+    
     <form id="activityForm" class="space-y-3">
-      <select id="user_id" required class="w-full border rounded px-3 py-2">
-        <option value="">Select User</option>
-      </select>
+      <!-- Hidden user_id field -->
+      <input type="hidden" id="user_id">
+      
       <input id="steps" type="number" placeholder="Steps" required
         class="w-full border rounded px-3 py-2">
       <input id="water_intake" type="number" step="0.1" placeholder="Water Intake (L)" required
