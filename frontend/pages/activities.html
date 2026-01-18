@@ -3,30 +3,25 @@
     <h1 class="text-3xl font-bold">Activity Tracker</h1>
     <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
   </div>
-
+  
   <!-- Add / Edit Activity Form -->
   <div class="bg-white p-5 rounded shadow mb-8">
     <h2 class="font-semibold mb-3 text-lg">Add Activity</h2>
-
     <form id="activityForm" class="space-y-3">
-      <input id="user_id" type="number" placeholder="User ID" required
-        class="w-full border rounded px-3 py-2">
-
+      <select id="user_id" required class="w-full border rounded px-3 py-2">
+        <option value="">Select User</option>
+      </select>
       <input id="steps" type="number" placeholder="Steps" required
         class="w-full border rounded px-3 py-2">
-
-      <input id="water_intake" type="number" step="0.1" placeholder="Water Intake (L)"
+      <input id="water_intake" type="number" step="0.1" placeholder="Water Intake (L)" required
         class="w-full border rounded px-3 py-2">
-
-      <input id="calories_burned" type="number" placeholder="Calories Burned"
+      <input id="calories_burned" type="number" placeholder="Calories Burned" required
         class="w-full border rounded px-3 py-2">
-
       <div class="flex space-x-2">
         <button id="submitBtn" type="submit"
           class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
           Add Activity
         </button>
-
         <button id="cancelBtn" type="button"
           class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
           Cancel
@@ -34,34 +29,30 @@
       </div>
     </form>
   </div>
-
+  
   <!-- Activities Table -->
   <div class="bg-white p-5 rounded shadow">
     <h2 class="font-semibold mb-4 text-lg">All Activities</h2>
-
     <div id="loadingSpinner" class="text-center py-4">
       <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
     </div>
-
     <div id="activitiesTableContainer" class="hidden overflow-x-auto">
       <table class="min-w-full text-left border">
         <thead class="bg-gray-200">
           <tr>
             <th class="px-3 py-2">User ID</th>
             <th class="px-3 py-2">Steps</th>
-            <th class="px-3 py-2">Water</th>
+            <th class="px-3 py-2">Water (L)</th>
             <th class="px-3 py-2">Calories</th>
             <th class="px-3 py-2">Actions</th>
           </tr>
         </thead>
         <tbody id="activitiesTableBody"></tbody>
       </table>
-
       <p id="noActivities" class="text-center text-gray-500 mt-3 hidden">
         No activities found.
       </p>
     </div>
   </div>
-
   <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
 </div>

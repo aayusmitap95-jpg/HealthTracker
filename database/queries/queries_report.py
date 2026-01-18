@@ -26,9 +26,9 @@ def user_health_report():
                 m.genetic_disease,
                 m.allergies
             FROM user_inputs u
-            INNER JOIN activities a ON u.user_id = a.user_id
-            INNER JOIN medical m ON u.user_id = m.user_id
-            ORDER BY u.user_id
+            LEFT JOIN user_activity a ON a.user_id = u.user_id
+            LEFT JOIN medical_info m ON m.user_id = u.user_id
+            ORDER BY u.user_id DESC
         """
         
         cursor.execute(query)
