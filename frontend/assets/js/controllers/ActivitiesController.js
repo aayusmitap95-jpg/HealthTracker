@@ -50,6 +50,8 @@ export function initActivitiesController() {
   
   cancelBtn.onclick = () => {
     form.reset();
+    $("cancelBtn").classList.add("hidden");
+    checkUserAndLoadActivity();
   };
 }
 
@@ -144,7 +146,44 @@ async function updateActivity(id, data) {
 }
 
 export async function editActivity(id) {
-  // Not needed anymore since we auto-detect
+  try {
+    const activity = await apiGetOne(id);
+    if (!activity) {
+      showAlert("Activity not found", "error");
+      return;
+    }
+    
+    // Set this activity as the one being edited
+    existingActivityId = activity.id;
+    currentUserId = activity.user_id;
+    
+    // Update display
+    const userDisplay = $("currentUserDisplay");
+    if (userDisplay) {
+      // Try to get user name
+      const users = await apiGetAllUsers();
+      const user = users.find(u => u.user_id === activity.user_id);
+      const userName = user ? user.name : "Unknown";
+      
+      userDisplay.innerHTML = `
+        <span class="text-blue-700 font-semibold">Editing activity for:</span>
+        <span class="font-bold">${userName} (ID: ${activity.user_id})</span>
+      `;
+    }
+    
+    // Fill form
+    $("steps").value = activity.steps || "";
+    $("water_intake").value = activity.water_intake || "";
+    $("calories_burned").value = activity.calories_burned || "";
+    $("submitBtn").textContent = "Update Activity";
+    $("cancelBtn").classList.remove("hidden");
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (error) {
+    console.error("Error editing activity:", error);
+    showAlert("Error loading activity", "error");
+  }
 }
 
 export async function deleteActivityAction(id) {

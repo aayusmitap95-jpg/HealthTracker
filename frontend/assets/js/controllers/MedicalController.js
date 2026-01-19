@@ -60,6 +60,8 @@ export function initMedicalController() {
   
   cancelBtn.onclick = () => {
     resetForm();
+    $("cancelBtn").classList.add("hidden");
+    checkUserAndLoadMedical(); 
   };
 }
 
@@ -214,8 +216,47 @@ async function updateMedical(id, data) {
   }
 }
 
+// export async function editMedical(id) {
+//   // Auto-detection handles this
+// }
 export async function editMedical(id) {
-  // Auto-detection handles this
+  try {
+    const record = await apiGetOne(id);
+    if (!record) {
+      showAlert("Medical record not found", "error");
+      return;
+    }
+    
+    // Set this record as the one being edited
+    existingMedicalId = record.id;
+    currentUserId = record.user_id;
+    
+    // Update display
+    const userDisplay = $("currentUserDisplay");
+    if (userDisplay) {
+      // Try to get user name
+      const users = await apiGetAllUsers();
+      const user = users.find(u => u.user_id === record.user_id);
+      const userName = user ? user.name : "Unknown";
+      
+      userDisplay.innerHTML = `
+        <span class="text-blue-700 font-semibold">Editing medical record for:</span>
+        <span class="font-bold">${userName} (ID: ${record.user_id})</span>
+      `;
+    }
+    
+    // Fill form with data
+    fillFormWithData(record);
+    
+    $("submitBtn").textContent = "Update Record";
+    $("cancelBtn").classList.remove("hidden");
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (error) {
+    console.error("Error editing medical record:", error);
+    showAlert("Error loading medical record", "error");
+  }
 }
 
 export async function deleteMedicalAction(id) {
