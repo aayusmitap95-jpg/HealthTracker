@@ -1,3 +1,114 @@
+<!-- <div class="max-w-3xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold">Medical Records</h1>
+    <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
+  </div> -->
+  
+  <!-- Add / Edit Medical Form -->
+  <!-- <div class="bg-white p-5 rounded shadow mb-8">
+    <h2 class="font-semibold mb-3 text-lg">Add Medical Record</h2>
+    <form id="medicalForm" class="space-y-4"> -->
+      
+      <!-- User Selection -->
+      <!-- <div>
+        <label class="block text-sm font-medium mb-1">Select User</label>
+        <select id="user_id" required class="w-full border rounded px-3 py-2">
+          <option value="">Select User</option>
+        </select>
+      </div> -->
+
+      <!-- Disease Section -->
+      <!-- <div class="border rounded p-3 bg-gray-50">
+        <label class="block text-sm font-semibold mb-2">Do you have any disease?</label>
+        <div class="flex gap-4 mb-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_disease" value="yes" class="disease-radio">
+            <span>Yes</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_disease" value="no" class="disease-radio" checked>
+            <span>No</span>
+          </label>
+        </div>
+        <input id="disease" type="text" placeholder="Enter disease name" 
+          class="w-full border rounded px-3 py-2 hidden">
+      </div> -->
+
+      <!-- Genetic Disease Section -->
+      <!-- <div class="border rounded p-3 bg-gray-50">
+        <label class="block text-sm font-semibold mb-2">Do you have any genetic disease?</label>
+        <div class="flex gap-4 mb-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_genetic" value="yes" class="genetic-radio">
+            <span>Yes</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_genetic" value="no" class="genetic-radio" checked>
+            <span>No</span>
+          </label>
+        </div>
+        <input id="genetic_disease" type="text" placeholder="Enter genetic disease name" 
+          class="w-full border rounded px-3 py-2 hidden">
+      </div> -->
+
+      <!-- Allergies Section -->
+      <!-- <div class="border rounded p-3 bg-gray-50">
+        <label class="block text-sm font-semibold mb-2">Do you have any allergies?</label>
+        <div class="flex gap-4 mb-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_allergies" value="yes" class="allergies-radio">
+            <span>Yes</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_allergies" value="no" class="allergies-radio" checked>
+            <span>No</span>
+          </label>
+        </div>
+        <input id="allergies" type="text" placeholder="Enter allergies (e.g., Peanuts, Dust)" 
+          class="w-full border rounded px-3 py-2 hidden">
+      </div> -->
+
+      <!-- Submit Buttons -->
+      <!-- <div class="flex space-x-2">
+        <button id="submitBtn" type="submit"
+          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
+          Add Record
+        </button>
+        <button id="cancelBtn" type="button"
+          class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div> -->
+  
+  <!-- Medical Table -->
+  <!-- <div class="bg-white p-5 rounded shadow">
+    <h2 class="font-semibold mb-4 text-lg">All Medical Records</h2>
+    <div id="loadingSpinner" class="text-center py-4">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    </div>
+    <div id="medicalTableContainer" class="hidden overflow-x-auto">
+      <table class="min-w-full border-collapse">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-3 py-2">User ID</th>
+            <th class="px-3 py-2">Disease</th>
+            <th class="px-3 py-2">Genetic Disease</th>
+            <th class="px-3 py-2">Allergies</th>
+            <th class="px-3 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="medicalTableBody" class="divide-y divide-gray-200"></tbody>
+      </table>
+      <p id="noMedical" class="text-center text-gray-500 mt-3 hidden">
+        No medical records found.
+      </p>
+    </div>
+  </div>
+  <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
+</div> -->
+
 <div class="max-w-3xl mx-auto p-6">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-3xl font-bold">Medical Records</h1>
@@ -7,15 +118,18 @@
   <!-- Add / Edit Medical Form -->
   <div class="bg-white p-5 rounded shadow mb-8">
     <h2 class="font-semibold mb-3 text-lg">Add Medical Record</h2>
+    
+    <!-- Display which user we're adding medical record for -->
+    <div class="mb-3 p-3 bg-blue-50 border border-blue-200 rounded">
+      <p class="text-sm text-gray-700">
+        Adding medical record for: <strong id="currentUserDisplay">Loading...</strong>
+      </p>
+    </div>
+    
     <form id="medicalForm" class="space-y-4">
       
-      <!-- User Selection -->
-      <div>
-        <label class="block text-sm font-medium mb-1">Select User</label>
-        <select id="user_id" required class="w-full border rounded px-3 py-2">
-          <option value="">Select User</option>
-        </select>
-      </div>
+      <!-- Hidden user_id field -->
+      <input type="hidden" id="user_id">
 
       <!-- Disease Section -->
       <div class="border rounded p-3 bg-gray-50">
