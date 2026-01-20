@@ -4,6 +4,8 @@ import { initActivitiesController } from "../controllers/ActivitiesController.js
 import { initMedicalController } from "../controllers/MedicalController.js";
 import { initreportController } from "../controllers/reportController.js";
 
+
+
 // Load HTML into #app
 async function loadView(path) {
   const res = await fetch(path);
