@@ -7,3 +7,7 @@ export function createElement(html) {
   div.innerHTML = html.trim();
   return div.firstChild;
 }
+
+// export function $(id) {
+//   return document.getElementById(id);
+// }

@@ -41,7 +41,8 @@ FRONTEND_ROUTES = {
     "/users",
     "/activities",
     "/medical",
-    "/reports"
+    "/reports",
+    "/profile"
 }
 
 class Router(BaseHTTPRequestHandler):

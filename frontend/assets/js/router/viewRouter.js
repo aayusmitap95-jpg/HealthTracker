@@ -3,6 +3,7 @@ import { initUserController } from "../controllers/UserController.js";
 import { initActivitiesController } from "../controllers/ActivitiesController.js";
 import { initMedicalController } from "../controllers/MedicalController.js";
 import { initreportController } from "../controllers/reportController.js";
+import { initProfileController } from "../controllers/profileController.js";
 
 
 
@@ -38,6 +39,10 @@ export async function router() {
   else if (path === "/report") {
     await loadView("/frontend/pages/report.html");
     initreportController();
+  }
+   else if (path === "/profile") {
+    await loadView("/frontend/pages/profile.html");
+    initProfileController();
   }
 
   else {

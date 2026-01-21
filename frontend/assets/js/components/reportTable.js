@@ -11,6 +11,7 @@ export function renderReportTable(rows = []) {
     console.error("❌ ERROR: reportTableBody element not found!");
     return;
   }
+  console.log("✅ reportTableBody found:", body);
 
   body.innerHTML = "";
 
@@ -25,7 +26,12 @@ export function renderReportTable(rows = []) {
   rows.forEach((r, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td class="px-3 py-2"><strong>${r.user_id || 'N/A'}</strong></td>
+     <td class="px-3 py-2">
+        <a href="/profile?userId=${r.user_id}" data-link 
+           class="text-blue-600 hover:text-blue-800 font-semibold underline">
+          ${r.user_id || 'N/A'}
+        </a>
+      </td>
       <td class="px-3 py-2">${r.name || 'N/A'}</td>
       <td class="px-3 py-2">${r.age || 'N/A'}</td>
       <td class="px-3 py-2">${r.height || 'N/A'}</td>

@@ -1,0 +1,130 @@
+<!-- frontend/pages/profile.html -->
+<div class="max-w-5xl mx-auto p-6">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold">👤 User Profile</h1>
+    <a href="/report" data-link class="text-sm text-blue-600 underline">← Back to Report</a>
+  </div>
+
+  <!-- Basic Details Section -->
+  <div class="bg-white p-5 rounded shadow mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-semibold text-xl">Basic Details</h2>
+      <button id="profileExportPdfBtn" 
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm inline-flex items-center gap-2">
+        <i class="fa-solid fa-file-pdf"></i>
+        Export PDF
+      </button>
+    </div>
+
+    <!-- Loading Spinner for Basic Info -->
+    <div id="basicLoading" class="text-center py-4">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    </div>
+
+    <!-- Basic Details Display -->
+    <div id="basicDetails" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">User ID</p>
+        <p id="userId" class="font-semibold text-lg">—</p>
+      </div>
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">Name</p>
+        <p id="userName" class="font-semibold text-lg">—</p>
+      </div>
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">Age</p>
+        <p id="userAge" class="font-semibold text-lg">—</p>
+      </div>
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">Height (cm)</p>
+        <p id="userHeight" class="font-semibold text-lg">—</p>
+      </div>
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">Weight (kg)</p>
+        <p id="userWeight" class="font-semibold text-lg">—</p>
+      </div>
+      <div class="border rounded p-3">
+        <p class="text-sm text-gray-600">Gender</p>
+        <p id="userGender" class="font-semibold text-lg">—</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activities Section -->
+  <div class="bg-white p-5 rounded shadow mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-semibold text-xl">Activity Records</h2>
+      <button id="activityExportCsvBtn" 
+        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm inline-flex items-center gap-2">
+        <i class="fa-solid fa-file-csv"></i>
+        Export CSV
+      </button>
+    </div>
+
+    <!-- Loading Spinner for Activities -->
+    <div id="activityLoading" class="text-center py-4">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    </div>
+
+    <!-- Activities Table -->
+    <div id="activityTableContainer" class="hidden overflow-x-auto">
+      <p id="totalActivities" class="text-sm text-gray-600 mb-3">Total: 0</p>
+      <table class="min-w-full text-left border">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-3 py-2">Activity ID</th>
+            <th class="px-3 py-2">Steps</th>
+            <th class="px-3 py-2">Water Intake (L)</th>
+            <th class="px-3 py-2">Calories Burned</th>
+          </tr>
+        </thead>
+        <tbody id="activityTableBody"></tbody>
+      </table>
+      <p id="noActivities" class="text-center text-gray-500 mt-3 hidden">
+        No activity records found.
+      </p>
+    </div>
+  </div>
+
+  <!-- Medical Records Section -->
+  <div class="bg-white p-5 rounded shadow">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-semibold text-xl">Medical Records</h2>
+      <button id="medicalExportCsvBtn" 
+        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm inline-flex items-center gap-2">
+        <i class="fa-solid fa-file-csv"></i>
+        Export CSV
+      </button>
+    </div>
+
+    <!-- Loading Spinner for Medical -->
+    <div id="medicalLoading" class="text-center py-4">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    </div>
+
+    <!-- Medical Table -->
+    <div id="medicalTableContainer" class="hidden overflow-x-auto">
+      <p id="totalMedical" class="text-sm text-gray-600 mb-3">Total: 0</p>
+      <table class="min-w-full text-left border">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-3 py-2">Record ID</th>
+            <th class="px-3 py-2">Disease</th>
+            <th class="px-3 py-2">Genetic Disease</th>
+            <th class="px-3 py-2">Allergies</th>
+          </tr>
+        </thead>
+        <tbody id="medicalTableBody"></tbody>
+      </table>
+      <p id="noMedical" class="text-center text-gray-500 mt-3 hidden">
+        No medical records found.
+      </p>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
+    <strong>Error:</strong> <span id="errorText">Unable to load user profile.</span>
+  </div>
+</div>

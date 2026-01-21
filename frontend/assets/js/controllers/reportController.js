@@ -23,6 +23,10 @@ const COLUMNS = [
 ];
 
 export function initreportController() {
+   if (!document.getElementById("reportTableBody")) {
+    console.log("ℹ️ Not report page → skipping reportController");
+    return;
+  }
   console.log("Report controller initialized");
   loadReport();
   initSearchFunctionality();
