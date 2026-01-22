@@ -1,130 +1,134 @@
-<!-- frontend/pages/profile.html -->
-<div class="max-w-5xl mx-auto p-6">
+<div class="max-w-6xl mx-auto p-8 bg-white/98 backdrop-blur-xl rounded-2xl border border-white/90 shadow-2xl">
+  
   <!-- Header -->
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-3xl font-bold">👤 User Profile</h1>
-    <a href="/report" data-link class="text-sm text-blue-600 underline">← Back to Report</a>
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-4xl font-bold text-white drop-shadow-2xl">👤 User Profile</h1>
+    <a href="/report" data-link class="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors">← Back to Report</a>
   </div>
 
   <!-- Basic Details Section -->
-  <div class="bg-white p-5 rounded shadow mb-6">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="font-semibold text-xl">Basic Details</h2>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-bold text-2xl text-gray-800">Basic Details</h2>
       <button id="profileExportPdfBtn" 
-        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm inline-flex items-center gap-2">
+        class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
         <i class="fa-solid fa-file-pdf"></i>
         Export PDF
       </button>
     </div>
 
     <!-- Loading Spinner for Basic Info -->
-    <div id="basicLoading" class="text-center py-4">
-      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    <div id="basicLoading" class="text-center py-8">
+      <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-blue-500"></div>
     </div>
 
     <!-- Basic Details Display -->
-    <div id="basicDetails" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">User ID</p>
-        <p id="userId" class="font-semibold text-lg">—</p>
+    <div id="basicDetails" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">User ID</p>
+        <p id="userId" class="font-bold text-lg text-gray-800">—</p>
       </div>
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">Name</p>
-        <p id="userName" class="font-semibold text-lg">—</p>
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">Name</p>
+        <p id="userName" class="font-bold text-lg text-gray-800">—</p>
       </div>
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">Age</p>
-        <p id="userAge" class="font-semibold text-lg">—</p>
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">Age</p>
+        <p id="userAge" class="font-bold text-lg text-gray-800">—</p>
       </div>
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">Height (cm)</p>
-        <p id="userHeight" class="font-semibold text-lg">—</p>
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">Height (cm)</p>
+        <p id="userHeight" class="font-bold text-lg text-gray-800">—</p>
       </div>
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">Weight (kg)</p>
-        <p id="userWeight" class="font-semibold text-lg">—</p>
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">Weight (kg)</p>
+        <p id="userWeight" class="font-bold text-lg text-gray-800">—</p>
       </div>
-      <div class="border rounded p-3">
-        <p class="text-sm text-gray-600">Gender</p>
-        <p id="userGender" class="font-semibold text-lg">—</p>
+      <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+        <p class="text-sm text-gray-600 mb-1">Gender</p>
+        <p id="userGender" class="font-bold text-lg text-gray-800">—</p>
       </div>
     </div>
   </div>
 
   <!-- Activities Section -->
-  <div class="bg-white p-5 rounded shadow mb-6">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="font-semibold text-xl">Activity Records</h2>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-bold text-2xl text-gray-800">Activity Records</h2>
       <button id="activityExportCsvBtn" 
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm inline-flex items-center gap-2">
+        class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
         <i class="fa-solid fa-file-csv"></i>
         Export CSV
       </button>
     </div>
 
     <!-- Loading Spinner for Activities -->
-    <div id="activityLoading" class="text-center py-4">
-      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    <div id="activityLoading" class="text-center py-8">
+      <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-blue-500"></div>
     </div>
 
     <!-- Activities Table -->
-    <div id="activityTableContainer" class="hidden overflow-x-auto">
-      <p id="totalActivities" class="text-sm text-gray-600 mb-3">Total: 0</p>
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="px-3 py-2">Activity ID</th>
-            <th class="px-3 py-2">Steps</th>
-            <th class="px-3 py-2">Water Intake (L)</th>
-            <th class="px-3 py-2">Calories Burned</th>
-          </tr>
-        </thead>
-        <tbody id="activityTableBody"></tbody>
-      </table>
-      <p id="noActivities" class="text-center text-gray-500 mt-3 hidden">
+    <div id="activityTableContainer" class="hidden">
+      <p id="totalActivities" class="text-sm text-gray-600 mb-4 font-medium">Total: 0</p>
+      <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <table class="min-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Activity ID</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Steps</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Water Intake (L)</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Calories Burned</th>
+            </tr>
+          </thead>
+          <tbody id="activityTableBody" class="bg-white divide-y divide-gray-200"></tbody>
+        </table>
+      </div>
+      <p id="noActivities" class="text-center text-gray-500 py-8 hidden">
         No activity records found.
       </p>
     </div>
   </div>
 
   <!-- Medical Records Section -->
-  <div class="bg-white p-5 rounded shadow">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="font-semibold text-xl">Medical Records</h2>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="font-bold text-2xl text-gray-800">Medical Records</h2>
       <button id="medicalExportCsvBtn" 
-        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm inline-flex items-center gap-2">
+        class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center gap-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
         <i class="fa-solid fa-file-csv"></i>
         Export CSV
       </button>
     </div>
 
     <!-- Loading Spinner for Medical -->
-    <div id="medicalLoading" class="text-center py-4">
-      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    <div id="medicalLoading" class="text-center py-8">
+      <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-blue-500"></div>
     </div>
 
     <!-- Medical Table -->
-    <div id="medicalTableContainer" class="hidden overflow-x-auto">
-      <p id="totalMedical" class="text-sm text-gray-600 mb-3">Total: 0</p>
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="px-3 py-2">Record ID</th>
-            <th class="px-3 py-2">Disease</th>
-            <th class="px-3 py-2">Genetic Disease</th>
-            <th class="px-3 py-2">Allergies</th>
-          </tr>
-        </thead>
-        <tbody id="medicalTableBody"></tbody>
-      </table>
-      <p id="noMedical" class="text-center text-gray-500 mt-3 hidden">
+    <div id="medicalTableContainer" class="hidden">
+      <p id="totalMedical" class="text-sm text-gray-600 mb-4 font-medium">Total: 0</p>
+      <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <table class="min-w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Record ID</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Disease</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Genetic Disease</th>
+              <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Allergies</th>
+            </tr>
+          </thead>
+          <tbody id="medicalTableBody" class="bg-white divide-y divide-gray-200"></tbody>
+        </table>
+      </div>
+      <p id="noMedical" class="text-center text-gray-500 py-8 hidden">
         No medical records found.
       </p>
     </div>
   </div>
 
   <!-- Error Message -->
-  <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
-    <strong>Error:</strong> <span id="errorText">Unable to load user profile.</span>
+  <div id="errorMessage" class="hidden bg-red-50 border border-red-400 text-red-700 px-5 py-4 rounded-lg mt-6">
+    <strong class="font-semibold">Error:</strong> <span id="errorText">Unable to load user profile.</span>
   </div>
 </div>

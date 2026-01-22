@@ -1,18 +1,35 @@
 <!-- ================= HEADER ================= -->
-<header class="main-header">
-  <nav class="nav-container">
-
-    <!-- Left Side Logo / App Name -->
-    <h2 class="logo">Health Tracker</h2>
-
-    <!-- Navigation Links -->
-    <div class="nav-links">
-      <a href="/home" data-link class="nav-link">Home</a>
-      <a href="/users" data-link class="nav-link">Users</a>
-      <a href="/activities" data-link class="nav-link">Activity</a>
-      <a href="/medical" data-link class="nav-link">Medical</a>
-      <a href="/report" data-link class="nav-link">Report</a>
+<header class="bg-slate-900 border-b border-blue-500/20 shadow-2xl sticky top-0 z-50 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+          <span class="text-white text-xl">🩺</span>
+        </div>
+        <div class="text-2xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+          Health Tracker
+        </div>
+      </div>
+      
+      <!-- Navigation -->
+      <nav class="flex gap-2">
+        <a href="/home" data-link class="px-5 py-2.5 text-blue-100 font-semibold text-sm rounded-lg hover:text-white hover:bg-blue-600/30 transition-all duration-200 border border-transparent hover:border-blue-500/30">
+          Home
+        </a>
+        <a href="/users" data-link class="px-5 py-2.5 text-blue-100 font-semibold text-sm rounded-lg hover:text-white hover:bg-blue-600/30 transition-all duration-200 border border-transparent hover:border-blue-500/30">
+          Users
+        </a>
+        <a href="/activities" data-link class="px-5 py-2.5 text-blue-100 font-semibold text-sm rounded-lg hover:text-white hover:bg-blue-600/30 transition-all duration-200 border border-transparent hover:border-blue-500/30">
+          Activities
+        </a>
+        <a href="/medical" data-link class="px-5 py-2.5 text-blue-100 font-semibold text-sm rounded-lg hover:text-white hover:bg-blue-600/30 transition-all duration-200 border border-transparent hover:border-blue-500/30">
+          Medical
+        </a>
+        <a href="/report" data-link class="px-5 py-2.5 text-blue-100 font-semibold text-sm rounded-lg hover:text-white hover:bg-blue-600/30 transition-all duration-200 border border-transparent hover:border-blue-500/30">
+          Reports
+        </a>
+      </nav>
     </div>
-
-  </nav>
+  </div>
 </header>

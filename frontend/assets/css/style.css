@@ -1,226 +1,65 @@
 /* ================================
-   HEALTH TRACKER - FULL CSS FILE
+   PROFESSIONAL HEALTH TRACKER
+   Minimal CSS + Tailwind Classes
 ====================================*/
 
-
-/* ---------- GLOBAL PAGE ---------- */
+/* Global Background & Font */
 body {
-  font-family: "Outfit", sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a, #38bdf8);
-  background-attachment: fixed;
-  color: #111;
+  font-family: "Inter", "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  color: #1f2937;
 }
 
-
-/* ------------- MAIN BOX CONTAINERS ------------- */
-
-/* Applies to Home, Users, Medical, Activity, Report Pages */
-.max-w-3xl,
-.max-w-2xl,
-.max-w-5xl {
-  backdrop-filter: blur(14px);
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-  padding: 20px !important;
-}
-
-
-
-/* ---------- HEADINGS ---------- */
-h1 {
-  color: white;
-  text-shadow: 0px 4px 15px rgba(0,0,0,0.5);
-}
-
-h2 {
-  font-weight: 700;
-  color: #081c3e;
-}
-
-
-/* ---------- HOME PAGE CARDS ---------- */
-.group {
-  background: rgba(255, 255, 255, 0.35) !important;
-  border: 1px solid rgba(255,255,255,0.4);
-  backdrop-filter: blur(10px);
-  transition: 0.3s ease-in-out;
-}
-
-.group:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-/* ---- HEADER LOGO ---- */
-.logo{
-  color: #ffffff;               /* Pure white text */
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-shadow: 
-      0 0 8px rgba(255,255,255,0.8),
-      0 0 18px rgba(0,204,255,0.9),
-      0 0 30px rgba(0,140,255,0.8);
-}
-
-
-
-/* ---------- FORMS ---------- */
-form input,
-form select {
-  border-radius: 10px !important;
-  border: 1px solid #94a3b8 !important;
-  background: rgba(255,255,255,0.9);
-  transition: 0.3s;
-}
-
-form input:focus,
-form select:focus {
-  outline: none;
-  border: 2px solid #2563eb !important;
-  box-shadow: 0px 0px 10px rgba(59,130,246,0.6);
-}
-
-
-/* ---------- BUTTONS ---------- */
-button {
-  border-radius: 10px !important;
-  font-weight: 600;
-  letter-spacing: .5px;
-  transition: .3s;
-}
-
-button:hover {
-  transform: scale(1.03);
-}
-
-
-/* ---------- TABLES ---------- */
-table {
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.95);
-}
-
-thead {
-  background: #0f172a !important;
-  color: white;
-}
-
-tbody tr {
-  transition: .3s;
-}
-
-tbody tr:hover {
-  background: rgba(56,189,248,0.3);
-  transform: scale(1.01);
-}
-
-
-/* ---------- ALERT POPUPS ---------- */
-#alertContainer div {
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-
-/* ---------- LINKS ---------- */
-a {
-  font-weight: 600;
-}
-
-a:hover {
-  color: yellow !important;
-}
-
-
-/* =================================================
-                     HEADER
-===================================================*/
-
-/* Header Background Glass Effect */
-header {
-  background: rgba(10, 31, 68, 0.9);
-  border-bottom: 2px solid #38bdf8;
-  padding: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* Navigation */
-nav {
-  display: flex;
-  gap: 22px;
-}
-
-/* Nav Link Styling */
-.nav-link {
-  color: white;
-  font-weight: 600;
-  position: relative;
-  letter-spacing: .5px;
-  transition: .3s;
-}
-
-/* Blue Glow Underline Animation */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 3px;
-  border-radius: 5px;
-  background:#2ECDFB;
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  color:#dff9ff;
-}
-
-.nav-link:hover::after {
-  width:100%;
-}
-
-
-
-/* =================================================
-                     FOOTER
-===================================================*/
-footer {
-  background: linear-gradient(135deg, #0A1F44, #0E2C6D);
-  color: #cbd5e1;
-  padding: 20px;
-  text-align: center;
-  border-top: 2px solid #2ECDFB;
-  letter-spacing: .5px;
-}
-
-footer p span {
-  color: #2ECDFB;
-  font-weight: 700;
-}
 /* Smooth scrolling */
-body {
+html {
   scroll-behavior: smooth;
 }
 
-/* Optional: Custom scrollbar (if you want) */
+/* Custom Professional Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1e293b;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  border-radius: 10px;
+  border: 2px solid #1e293b;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(180deg, #2563eb, #1d4ed8);
 }
 
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Fix for placeholder text being too light */
+::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+/* Make sure all text is readable */
+input, select, textarea {
+  color: #1f2937 !important;
+}
+
+/* Ensure white backgrounds are solid */
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Make sure titles are visible */
+h1, h2, h3 {
+  font-weight: 700 !important;
+}

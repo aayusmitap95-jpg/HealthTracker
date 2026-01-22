@@ -1,45 +1,45 @@
-<div class="max-w-3xl mx-auto p-6">
+<div class="max-w-6xl mx-auto p-8 bg-white/98 backdrop-blur-xl rounded-2xl border border-white/90 shadow-2xl">
   <!-- Header -->
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-3xl font-bold">Health Tracker – User</h1>
-    <a href="/home" data-link class="text-sm text-blue-600 underline">
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-4xl font-bold text-white drop-shadow-2xl">User Management</h1>
+    <a href="/home" data-link class="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors">
       ← Back to Home
     </a>
   </div>
 
   <!-- Add / Edit User Form -->
-  <div class="bg-white p-5 rounded shadow mb-8">
-    <h2 class="font-semibold mb-3 text-lg">Add / Edit User</h2>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
+    <h2 class="font-bold mb-4 text-xl text-gray-800">Add / Edit User</h2>
 
-       <form id="userForm" class="w-full border rounded px-3 py-2">
+    <form id="userForm" class="space-y-4">
       <input type="text" id="name" placeholder="Name" required
-        class="w-full border rounded px-3 py-2">
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
 
       <input type="number" id="age" placeholder="Age" required
-        class="w-full border rounded px-3 py-2">
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
 
       <input type="number" id="height" placeholder="Height (cm)" required
-        class="w-full border rounded px-3 py-2">
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
 
       <input type="number" id="weight" placeholder="Weight (kg)" required
-        class="w-full border rounded px-3 py-2">
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
 
       <select id="gender" required
-        class="w-full border rounded px-3 py-2">
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
         <option value="">Select Gender</option>
         <option>Male</option>
         <option>Female</option>
         <option>Other</option>
       </select>
 
-      <div class="flex space-x-2">
+      <div class="flex space-x-3">
         <button type="submit" id="submitBtn"
-          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
+          class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
           Add User
         </button>
 
         <button type="button" id="cancelBtn"
-          class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
+          class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-lg font-semibold transition-all hover:-translate-y-0.5 hidden">
           Cancel
         </button>
       </div>
@@ -47,32 +47,32 @@
   </div>
 
   <!-- Users Table -->
-  <div class="bg-white p-5 rounded shadow">
-    <h2 class="font-semibold mb-4 text-lg">All Users</h2>
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+    <h2 class="font-bold mb-5 text-xl text-gray-800">All Users</h2>
 
     <!-- Loading Spinner -->
-    <div id="loadingSpinner" class="text-center py-4">
-      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    <div id="loadingSpinner" class="text-center py-8">
+      <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-gray-200 border-t-blue-500"></div>
     </div>
 
     <!-- Users Table Container -->
-    <div id="usersTableContainer" class="hidden overflow-x-auto">
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200">
+    <div id="usersTableContainer" class="hidden overflow-x-auto rounded-lg border border-gray-200">
+      <table class="min-w-full">
+        <thead class="bg-gray-50">
           <tr>
-            <th class="px-3 py-2">User ID</th>
-            <th class="px-3 py-2">Name</th>
-            <th class="px-3 py-2">Age</th>
-            <th class="px-3 py-2">Height</th>
-            <th class="px-3 py-2">Weight</th>
-            <th class="px-3 py-2">Gender</th>
-            <th class="px-3 py-2">Actions</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">User ID</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Age</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Height</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Weight</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Gender</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Actions</th>
           </tr>
         </thead>
-        <tbody id="usersTableBody"></tbody>
+        <tbody id="usersTableBody" class="bg-white divide-y divide-gray-200"></tbody>
       </table>
 
-      <p id="noUsers" class="text-center text-gray-500 mt-3 hidden">
+      <p id="noUsers" class="text-center text-gray-500 py-8 hidden">
         No users found. Add one using the form above.
       </p>
     </div>
@@ -80,5 +80,4 @@
 
   <!-- Alert container -->
   <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
-
 </div>

@@ -1,33 +1,36 @@
-<!-- frontend/pages/report.html -->
-<div class="page-container">
-  <div class="page-header">
-    <h1>📊 Health Report - JOIN Query</h1>
-    <p>Combined data from Users, Activitiy & Medical Records</p>
+<div class="max-w-7xl mx-auto p-8 bg-white/98 backdrop-blur-xl rounded-2xl border border-white/90 shadow-2xl">
+  
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold text-white drop-shadow-2xl mb-2">📊 Health Report</h1>
+    <p class="text-blue-100 text-lg">Combined data from Users, Activity & Medical Records</p>
   </div>
 
-  <!-- Search Bar -->
-  <div class="search-section">
-    <div class="search-box">
-      <i class="fas fa-search search-icon"></i>
-      <input 
-        type="text" 
-        id="searchInput" 
-        class="search-input" 
-        placeholder="Search by User ID, Name, or Disease..."
-      />
-      <button id="clearSearch" class="clear-btn hidden">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="search-info">
-      <span id="resultCount">Showing all records</span>
-    </div>
-  </div>
-     <!-- Sort Controls -->
+  <!-- Controls Section -->
+  <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
+    <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
+      
+      <!-- Search Bar -->
+      <div class="flex-1 w-full">
+        <div class="relative">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all" 
+            placeholder="Search by User ID, Name, or Disease..."
+          />
+          <button id="clearSearch" class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center transition-all hidden">
+            <i class="fas fa-times text-xs"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Sort Controls -->
       <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
         <div class="relative w-full sm:w-48">
           <i class="fa-solid fa-arrow-down-a-z absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-sm"></i>
-          <select id="sortBy" class="w-full h-10 border rounded pl-9 pr-3 text-sm bg-white">
+          <select id="sortBy" class="w-full h-11 border border-gray-300 rounded-lg pl-10 pr-4 text-sm bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
             <option value="user_id">Sort: User ID</option>
             <option value="name">Sort: Name</option>
             <option value="age">Sort: Age</option>
@@ -35,267 +38,77 @@
             <option value="calories_burned">Sort: Calories</option>
           </select>
         </div>
+        
         <div class="relative w-full sm:w-32">
-        <i class="fa-solid fa-up-down absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-sm"></i>
-          <select id="sortDir" class="w-full h-10 border rounded pl-9 pr-3 text-sm bg-white">
+          <i class="fa-solid fa-up-down absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-sm"></i>
+          <select id="sortDir" class="w-full h-11 border border-gray-300 rounded-lg pl-10 pr-4 text-sm bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
             <option value="asc">Asc ↑</option>
             <option value="desc">Desc ↓</option>
           </select>
         </div>
       </div>
+      
       <!-- Export Buttons -->
       <div class="flex gap-2 w-full lg:w-auto lg:ml-auto">
-        <button id="exportCsvBtn" class="h-10 px-3 rounded border bg-white text-sm text-gray-800
-               inline-flex items-center gap-2 justify-center whitespace-nowrap
-               hover:bg-gray-50 transition">
-          <i class="fa-solid fa-file-csv text-green-700 text-base"></i>
+        <button id="exportCsvBtn" class="flex-1 sm:flex-initial h-11 px-4 rounded-lg border border-gray-300 bg-white text-sm text-gray-800 inline-flex items-center gap-2 justify-center hover:bg-gray-50 transition-all font-medium">
+          <i class="fa-solid fa-file-csv text-green-600 text-base"></i>
           CSV
         </button>
-        <button id="exportPdfBtn" class="h-10 px-3 rounded bg-blue-600 text-white text-sm
-               inline-flex items-center gap-2 justify-center whitespace-nowrap
-               hover:bg-blue-700 transition">
+        <button id="exportPdfBtn" class="flex-1 sm:flex-initial h-11 px-4 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm inline-flex items-center gap-2 justify-center hover:from-blue-600 hover:to-blue-700 transition-all font-semibold shadow-md hover:shadow-lg">
           <i class="fa-solid fa-file-pdf text-base"></i>
           PDF
         </button>
       </div>
     </div>
-     <!-- Result Count -->
-    <div class="search-info">
-      <span id="resultCount">Showing all records</span>
+    
+    <!-- Result Count -->
+    <div class="mt-4">
+      <span id="resultCount" class="text-sm text-gray-600 font-medium">Showing all records</span>
     </div>
   </div>
 
   <!-- Loading Spinner -->
-  <div id="loadingSpinner" style="text-align: center; padding: 2rem;">
-    <div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-    <p>Loading health report...</p>
+  <div id="loadingSpinner" class="text-center py-12">
+    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-blue-500 mb-4"></div>
+    <p class="text-gray-600">Loading health report...</p>
   </div>
 
   <!-- Report Table Container -->
-  <div id="reportTableContainer" class="card hidden">
-    <div class="card-header">
-      <h2>Complete Health Overview</h2>
+  <div id="reportTableContainer" class="bg-white rounded-xl shadow-sm border border-gray-200 hidden">
+    <div class="p-6 border-b border-gray-200">
+      <h2 class="text-xl font-bold text-gray-800">Complete Health Overview</h2>
     </div>
     
-    <div class="table-container">
-      <table class="table">
-        <thead>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead class="bg-gray-50">
           <tr>
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Height</th>
-            <th>Weight</th>
-            <th>Gender</th>
-            <th>Steps</th>
-            <th>Water</th>
-            <th>Calories</th>
-            <th>Disease</th>
-            <th>Genetic</th>
-            <th>Allergies</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">User ID</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Age</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Height</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Weight</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Gender</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Steps</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Water</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Calories</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Disease</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Genetic</th>
+            <th class="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Allergies</th>
           </tr>
         </thead>
-        <tbody id="reportTableBody">
+        <tbody id="reportTableBody" class="bg-white divide-y divide-gray-200">
           <!-- Data will be inserted here -->
         </tbody>
       </table>
       
-      <div id="noRows" class="no-data hidden">
-        <div class="empty-state">
-          <i class="fas fa-folder-open" style="font-size: 3rem; color: #ccc;"></i>
-          <p>No health records found</p>
-          <small>Try a different search term</small>
+      <div id="noRows" class="text-center py-12 hidden">
+        <div class="flex flex-col items-center gap-3">
+          <i class="fas fa-folder-open text-5xl text-gray-300"></i>
+          <p class="text-lg font-medium text-gray-500">No health records found</p>
+          <small class="text-gray-400">Try a different search term</small>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<style>
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.hidden {
-  display: none !important;
-}
-
-.page-container {
-  padding: 2rem;
-  max-width: 100%;
-  width: 100%;
-}
-
-.page-header {
-  margin-bottom: 1.5rem;
-}
-
-.page-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-}
-
-.page-header p {
-  color: #7f8c8d;
-  font-size: 1rem;
-}
-
-/* Search Section */
-.search-section {
-  margin-bottom: 2rem;
-}
-
-.search-box {
-  position: relative;
-  max-width: 600px;
-  margin-bottom: 0.75rem;
-}
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #95a5a6;
-  font-size: 1rem;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0.875rem 3rem 0.875rem 3rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s;
-  background: white;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-.clear-btn {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.clear-btn:hover {
-  background: #c0392b;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.search-info {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-  padding-left: 0.5rem;
-}
-
-.card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-}
-
-.card-header {
-  margin-bottom: 1.5rem;
-}
-
-.card-header h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.table-container {
-  overflow-x: auto;
-  width: 100%;
-}
-
-.table {
-  width: 100%;
-  min-width: 1200px;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
-}
-
-.table th {
-  background: #f8f9fa;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #2c3e50;
-}
-
-.table td {
-  font-size: 0.9rem;
-}
-
-.table tbody tr {
-  transition: background 0.2s;
-}
-
-.table tbody tr:hover {
-  background: #f8f9fa;
-}
-
-.no-data {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-}
-
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.empty-state p {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #7f8c8d;
-  margin: 0;
-}
-
-.empty-state small {
-  color: #95a5a6;
-}
-
-@media (max-width: 640px) {
-  .flex {
-    flex-direction: column;
-  }
-  
-  .lg\:ml-auto {
-    margin-left: 0 !important;
-  }
-}
-</style>
